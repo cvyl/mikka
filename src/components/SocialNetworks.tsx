@@ -27,10 +27,10 @@ export default defineComponent({
         <a href="https://github.com/cvyl" rel="me" aria-label="GitHub" onMouseenter={props.hoverHandler} onFocus={props.hoverHandler} target="_blank">
           <Icon icon={githubFill}/>
         </a>
-        <a href="https://tech.lgbt/@777" rel="me" aria-label="Mastodon" onMouseenter={props.hoverHandler} onFocus={props.hoverHandler} target="_blank">
+        {/*<a href="https://tech.lgbt/@777" rel="me" aria-label="Mastodon" onMouseenter={props.hoverHandler} onFocus={props.hoverHandler} target="_blank">
           <Icon icon={mastodonFill} />
-        </a>
-        <a href="https://t.me/menhera7" rel="me" aria-label="Telegram" onMouseenter={props.hoverHandler} onFocus={props.hoverHandler} target="_blank">
+        </a>*/}
+        <a href="https://t.me/malehera" rel="me" aria-label="Telegram" onMouseenter={props.hoverHandler} onFocus={props.hoverHandler} target="_blank">
           <Icon icon={telegramFill}/>
         </a>
         <a href="https://cvyl.me/blog-feed/exports/menhera7/atom.xml" rel="me" aria-label="RSS Feed" onMouseenter={props.hoverHandler} onFocus={props.hoverHandler} target="_blank">

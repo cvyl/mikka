@@ -12,8 +12,7 @@ export default defineComponent({
     const lastFmUsername = import.meta.env.VITE_LASTFM_USERNAME;
 
     onMounted(() => {
-      fetchCurrentTrack(); // Initial fetch
-      // Set up interval for subsequent fetches
+      fetchCurrentTrack();
       intervalId.value = window.setInterval(fetchCurrentTrack, 10000);
     });
 
