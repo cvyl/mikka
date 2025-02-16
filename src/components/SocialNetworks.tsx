@@ -62,7 +62,7 @@ export default defineComponent({
 				>
 					<Icon icon={rssIcon} />
 				</a>
-				<a
+				{/*<a
 					href='https://medium.com/@mikka123'
 					rel='me'
 					aria-label='Medium'
@@ -71,7 +71,7 @@ export default defineComponent({
 					target='_blank'
 				>
 					<Icon icon={mediumFill} />
-				</a>
+				</a>*/}
 				<a
 					href='https://help.obsidian.md/Obsidian/Credits#Translators'
 					rel='me'
