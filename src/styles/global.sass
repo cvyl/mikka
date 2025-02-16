@@ -1,0 +1,67 @@
+html,
+body
+  padding: 0
+  margin: 0
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif
+  background-color: #EDF8F6
+  overflow: hidden
+  background-image: url('/100-90-5.png')
+  background-repeat: repeat
+
+a
+  color: inherit
+  text-decoration: none
+
+*
+  box-sizing: border-box
+
+.base
+  &.animation-enter-active, &.animation-leave-active
+    transition: all .6s cubic-bezier(0.68, -0.55, 0.27, 1.55)
+
+    @media screen and (max-width: 500px)
+      transition: all .6s ease-in-out
+
+  &.animation-enter-from, &.animation-leave-to
+    opacity: 0
+    @media screen and (max-width: 500px)
+      transform: translateY(-100vh)
+
+    @media screen and (min-width: 500.001px)
+      transform: translateX(-500px)
+
+.animation-enter-from, .animation-leave-to
+  .blogHeader
+    opacity: 0
+    transform: translateY(-40px)
+
+.animation-enter-from
+  .postItem
+    opacity: 0
+    transform: translateX(100%)
+
+.animation-leave-to
+  .postItem
+    opacity: 0
+    transform: translateX(-100%)
+
+  .blogBody
+    opacity: 0
+    transform: translateY(50vh)
+
+  .fileView
+    opacity: 0
+    width: 0
+
+#nprogress
+  pointer-events: none
+
+#nprogress .bar
+  background: rgb(13, 148, 136)
+  opacity: 0.75
+  position: fixed
+  z-index: 1031
+  top: 0
+  left: 0
+  width: 100%
+  height: 2px

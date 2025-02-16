@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "ESNext",
+    "target": "es2016",
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
+    "esModuleInterop": true,
+    "incremental": false,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "types": [
+      "vite/client",
+      "vite-plugin-pages/client",
+      "@cloudflare/workers-types"
+    ],
+    "paths": {
+      "~/*": [
+        "src/*"
+      ]
+    },
+  },
+  "include": [
+    "./**/*",
+    "./functions/.well-known/**/*"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}
