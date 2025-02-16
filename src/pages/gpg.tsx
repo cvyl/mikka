@@ -1,61 +1,57 @@
-import styles from './gpg.module.sass';
-import copyOutlined from '@iconify-icons/ant-design/copy-outlined.js';
-import downloadOutlined from '@iconify-icons/ant-design/download-outlined.js';
-import Icon from '~/components/Icon';
-import BackButton from '~/components/BackButton';
+import styles from './gpg.module.sass'
+import copyOutlined from '@iconify-icons/ant-design/copy-outlined.js'
+import downloadOutlined from '@iconify-icons/ant-design/download-outlined.js'
+import Icon from '~/components/Icon'
+import BackButton from '~/components/BackButton'
 
 export default defineComponent({
-  setup() {
-    useHead({
-      title: 'GPG 公钥',
-      link: [
-        { rel: 'canonical', href: 'https://cvyl.me/pgp' },
-      ],
-      meta: [
-        { property: 'og:url', content: 'https://cvyl.me/pgp' },
-        { name: 'description', content: '凌莞 GPG 公钥的复制与下载' },
-        { property: 'og:title', content: 'GPG 公钥' },
-        { property: 'og:description', content: '凌莞 GPG 公钥的复制与下载' },
-        { property: 'twitter:title', content: 'GPG 公钥' },
-        { property: 'twitter:description', content: '凌莞 GPG 公钥的复制与下载' },
-      ],
-    });
+	setup() {
+		useHead({
+			title: 'GPG 公钥',
+			link: [{ rel: 'canonical', href: 'https://cvyl.me/pgp' }],
+			meta: [
+				{ property: 'og:url', content: 'https://cvyl.me/pgp' },
+				{ name: 'description', content: '凌莞 GPG 公钥的复制与下载' },
+				{ property: 'og:title', content: 'GPG 公钥' },
+				{ property: 'og:description', content: '凌莞 GPG 公钥的复制与下载' },
+				{ property: 'twitter:title', content: 'GPG 公钥' },
+				{ property: 'twitter:description', content: '凌莞 GPG 公钥的复制与下载' }
+			]
+		})
 
-    const { copy, copied } = useClipboard({ source: pubKey });
+		const { copy, copied } = useClipboard({ source: pubKey })
 
-    return () => (
-      <div class={styles.pgpContainer}>
-        <BackButton to="/"/>
-        <div class={styles.id} title="BA29 DDAB 2EB5 F349 20A2 DBFD 2537 3639 427C 7EAE">
-          <span>2537</span>
-          <span>3639</span>
-          <span>427C</span>
-          <span>7EAE</span>
-        </div>
-        <div class={styles.buttons}>
-          <div onClick={() => copy()} tabindex={0} role="button">
-            <Icon icon={copyOutlined}/>
-            <span class={styles.text}>
-              {copied.value ? 'Copied!' : 'Click to copy'}
-            </span>
-          </div>
-          <div onClick={download} tabindex={0} role="button">
-            <Icon icon={downloadOutlined}/>
-            <span class={styles.text}>Download</span>
-          </div>
-        </div>
-      </div>
-    );
-  },
-});
+		return () => (
+			<div class={styles.pgpContainer}>
+				<BackButton to='/' />
+				<div class={styles.id} title='BA29 DDAB 2EB5 F349 20A2 DBFD 2537 3639 427C 7EAE'>
+					<span>2537</span>
+					<span>3639</span>
+					<span>427C</span>
+					<span>7EAE</span>
+				</div>
+				<div class={styles.buttons}>
+					<div onClick={() => copy()} tabindex={0} role='button'>
+						<Icon icon={copyOutlined} />
+						<span class={styles.text}>{copied.value ? 'Copied!' : 'Click to copy'}</span>
+					</div>
+					<div onClick={download} tabindex={0} role='button'>
+						<Icon icon={downloadOutlined} />
+						<span class={styles.text}>Download</span>
+					</div>
+				</div>
+			</div>
+		)
+	}
+})
 
 function download() {
-  const blob = new Blob([pubKey]);
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'Mikka (cvyl)_0x427C7EAE_public.asc';
-  link.click();
+	const blob = new Blob([pubKey])
+	const url = URL.createObjectURL(blob)
+	const link = document.createElement('a')
+	link.href = url
+	link.download = 'Mikka (cvyl)_0x427C7EAE_public.asc'
+	link.click()
 }
 
 const pubKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -77,4 +73,4 @@ tUtCzgEAuQ74rUDs7aiTjcQooDoM67DaFSB9lTTcVoTwackQRgw=
 =vGXW
 -----END PGP PUBLIC KEY BLOCK-----
 
-`;
+`
