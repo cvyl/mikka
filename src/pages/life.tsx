@@ -38,7 +38,7 @@ export default defineComponent({
           {TgBlog.value && (
             <TgBlog.value
               postsUrl="https://raw.githubusercontent.com/cvyl/blog-feed/gh-pages/exports/menhera7/posts.json"
-              class="tgblogContainer"
+              class="maintgblogContainer"
             />
           )}
         </div>
