@@ -1,0 +1,68 @@
+import { defineComponent, ref, onMounted } from 'vue';
+import styles from './lastfm.module.sass';
+
+export default defineComponent({
+  name: 'LastFm',
+  setup() {
+    const isLoading = ref(true);
+    const currentTrack = ref<any>(null);
+
+    const lastFmApiKey = import.meta.env.VITE_LASTFM_API_KEY;
+    const lastFmUsername = import.meta.env.VITE_LASTFM_USERNAME;
+
+    onMounted(fetchCurrentTrack);
+
+    async function fetchCurrentTrack() {
+      if (!lastFmApiKey || !lastFmUsername) {
+        isLoading.value = false;
+        return;
+      }
+      try {
+        const endpoint = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${lastFmUsername}&api_key=${lastFmApiKey}&format=json&limit=1`;
+        const response = await fetch(endpoint);
+        const data = await response.json();
+        currentTrack.value = data?.recenttracks?.track?.[0] ?? null;
+      } catch {
+        currentTrack.value = null;
+      } finally {
+        isLoading.value = false;
+      }
+    }
+
+    return () => (
+      <div class={styles.lastFmContainer}>
+        {isLoading.value && <div>Loading...</div>}
+        {!isLoading.value && currentTrack.value && (
+          <>
+            <img
+              class={styles.albumArt}
+              src={currentTrack.value.image?.[2]?.['#text'] || ''}
+              alt="Album Art"
+            />
+            <div class={styles.info}>
+              <a
+                class={styles.title}
+                href={currentTrack.value.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {currentTrack.value.name}
+              </a>
+              <div class={styles.artist}>{currentTrack.value.artist['#text']}</div>
+
+              {/* Check if the track is currently playing */}
+              {currentTrack.value['@attr']?.nowplaying ? (
+                <div class={styles.status}>Now Playing</div>
+              ) : (
+                <div class={styles.status}>Last Played</div>
+              )}
+            </div>
+          </>
+        )}
+        {!isLoading.value && !currentTrack.value && (
+          <div>Not currently playing anything</div>
+        )}
+      </div>
+    );
+  },
+});

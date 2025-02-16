@@ -1,7 +1,9 @@
 import { defineComponent, ref, onMounted } from 'vue';
+import { useHead } from '@vueuse/head';
 import styles from './index.module.sass';
 import { RouterLink } from 'vue-router';
 import SocialNetworks from '~/components/SocialNetworks';
+import LastFm from '~/components/lastfm';  // Adjust the path as needed
 import 'tg-blog/dist/style.css';
 import './tgblogIndex.sass';
 
@@ -32,7 +34,7 @@ export default defineComponent({
       const { TgBlog: TgBlogComponent } = await import('tg-blog');
       TgBlog.value = TgBlogComponent;
 
-      // Add fade-in animation for life feed
+      // Fade in the feed container
       if (lifeFeedRef.value) {
         setTimeout(() => {
           lifeFeedRef.value.style.opacity = '1';
@@ -42,7 +44,7 @@ export default defineComponent({
     });
 
     function hoverHandler(e) {
-      timeOutId && clearTimeout(timeOutId);
+      if (timeOutId) clearTimeout(timeOutId);
       if (highlightRef.value) {
         highlightRef.value.style.transform =
           `translateX(${e.currentTarget.offsetLeft}px) translateY(${e.currentTarget.offsetTop}px)`;
@@ -50,15 +52,19 @@ export default defineComponent({
         highlightRef.value.style.width = `${e.currentTarget.clientWidth}px`;
         highlightRef.value.style.display = 'block';
       }
-      timeOutId = setTimeout(() => highlightRef.value.style.opacity = '1', 0);
+      timeOutId = setTimeout(() => {
+        if (highlightRef.value) highlightRef.value.style.opacity = '1';
+      }, 0);
     }
 
     function leave() {
-      timeOutId && clearTimeout(timeOutId);
+      if (timeOutId) clearTimeout(timeOutId);
       if (highlightRef.value) {
         highlightRef.value.style.opacity = '0';
       }
-      timeOutId = setTimeout(() => highlightRef.value && (highlightRef.value.style.display = 'none'), 500);
+      timeOutId = setTimeout(() => {
+        if (highlightRef.value) highlightRef.value.style.display = 'none';
+      }, 500);
     }
 
     const links = [
@@ -70,21 +76,32 @@ export default defineComponent({
 
     return () => (
       <div class={styles.pageContainer}>
+        {/* Left-side container */}
         <div class={styles.linkContainer} onMouseleave={leave}>
           <div class={styles.title} onMouseenter={leave}>
             Mikka's Blog
           </div>
-          <div class={styles.highlight} aria-hidden={true} ref={highlightRef}/>
+          <div class={styles.highlight} aria-hidden="true" ref={highlightRef}/>
           {links.map(([ch, en, href]) =>
             href.startsWith('http') ? (
-              <a href={href} target="_blank" rel="noopener noreferrer" onMouseenter={hoverHandler} onFocus={hoverHandler}>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onMouseenter={hoverHandler}
+                onFocus={hoverHandler}
+              >
                 {ch}
-                <span aria-hidden={true}>{en}</span>
+                <span aria-hidden="true">{en}</span>
               </a>
             ) : (
-              <RouterLink to={href} onMouseenter={hoverHandler} onFocus={hoverHandler}>
+              <RouterLink
+                to={href}
+                onMouseenter={hoverHandler}
+                onFocus={hoverHandler}
+              >
                 {ch}
-                <span aria-hidden={true}>{en}</span>
+                <span aria-hidden="true">{en}</span>
               </RouterLink>
             )
           )}
@@ -95,7 +112,9 @@ export default defineComponent({
           </div>
         </div>
 
+        {/* Main feed container */}
         <div class={styles.lifeFeedContainer} ref={lifeFeedRef}>
+
           <h2>Recent Updates</h2>
           {TgBlog.value && (
             <TgBlog.value
@@ -104,6 +123,7 @@ export default defineComponent({
             />
           )}
         </div>
+        <LastFm />
       </div>
     );
   },
