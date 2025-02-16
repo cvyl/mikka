@@ -1,4 +1,4 @@
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, ref, onMounted, Fragment } from 'vue';
 import styles from './lastfm.module.sass';
 
 export default defineComponent({
@@ -20,7 +20,7 @@ export default defineComponent({
       try {
         const endpoint = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${lastFmUsername}&api_key=${lastFmApiKey}&format=json&limit=1`;
         const response = await fetch(endpoint);
-        const data = await response.json();
+        const data = await response.json() as { recenttracks: { track: any[] } };
         currentTrack.value = data?.recenttracks?.track?.[0] ?? null;
       } catch {
         currentTrack.value = null;
