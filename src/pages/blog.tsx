@@ -15,7 +15,6 @@ export default defineComponent({
 		const posts = ref<BlogPost[]>([])
 
 		const parseFrontmatter = (content: string) => {
-			//fuckign kill me
 			const match = content.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/)
 			if (!match) {
 				console.log('No frontmatter found in content:', content.substring(0, 100) + '...')
@@ -26,25 +25,25 @@ export default defineComponent({
 			const data: Record<string, any> = {}
 
 			frontmatter.split('\n').forEach((line) => {
-				if (!line.trim()) return // Skip empty lines
-
 				const colonIndex = line.indexOf(':')
-				if (colonIndex === -1) return // Skip lines without colons
+				if (!line.trim() || colonIndex === -1) return
 
 				const key = line.slice(0, colonIndex).trim()
 				const value = line.slice(colonIndex + 1).trim()
 
-				if (key === 'tags') {
-					// Handle arrays with or without brackets
-					const cleanValue = value.replace(/^\[|\]$/g, '').trim()
-					data[key] = cleanValue ? cleanValue.split(',').map((tag) => tag.trim()) : []
-				} else {
-					// Remove quotes if they exist
-					data[key] = value.replace(/^["'](.*)["']$/, '$1')
-				}
+				data[key] =
+					key === 'tags'
+						? value.replace(/^\[|\]$/g, '').trim()
+							? value
+									.replace(/^\[|\]$/g, '')
+									.trim()
+									.split(',')
+									.map((tag) => tag.trim())
+							: []
+						: value.replace(/^["'](.*)["']$/, '$1')
 			})
 
-			console.log('Parsed frontmatter:', data) // Debug log
+			console.log('Parsed frontmatter:', data)
 			return data
 		}
 
