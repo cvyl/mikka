@@ -1,5 +1,4 @@
 import Icon from '~/components/Icon';
-import DxRating from '~/components/DxRating';
 import { defineComponent } from 'vue';
 
 // Import Iconify icons

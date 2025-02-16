@@ -1,4 +1,4 @@
-import { PropType } from 'vue';
+import { PropType, Fragment } from 'vue';
 import mailOutlined from '@iconify-icons/ant-design/mail-outlined.js';
 import cvIcon from '~/icons/cv';
 import githubFill from '@iconify-icons/akar-icons/github-fill.js';

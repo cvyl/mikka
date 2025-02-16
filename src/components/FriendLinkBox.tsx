@@ -40,7 +40,7 @@ export default defineComponent({
     onMounted(() => {
       fetch('./friends.json')
         .then(response => response.json())
-        .then(data => processFriendsData(data))
+        .then(data => processFriendsData(data as any[]))
         .catch(error => console.error('Error fetching friends data:', error));
     });
 
