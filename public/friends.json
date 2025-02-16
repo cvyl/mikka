@@ -12,7 +12,13 @@
               "title": "Amadeo",
               "link": "https://x.com/grompgore",
               "desc": "We've been friends for over a few years, I am sorry that I haven't been talking to you as much.",
-              "icon": "https://pbs.twimg.com/profile_images/1821277772310048768/vUd7VkBy_400x400.jpg"
+              "icon": "https://pbs.twimg.com/profile_images/1842292315853119488/v-GPj4am_400x400.jpg"
+          },
+          {
+              "title": "Ashley",
+              "link": "https://catmaid.coffee",
+              "desc": "Met eachother via a Minecraft discord and we've been working on a project together.",
+              "icon": "gallery/ashley.jpg"
           },
           {
               "title": "Samantha",
@@ -27,10 +33,16 @@
               "icon": "https://avatars.akamai.steamstatic.com/0b9414037e12ac60ffba2a7e1859d01c819cf9a4_full.jpg"
           },
           {
+              "title": "Izuru",
+              "link": "https://en.pronouns.page/@Izuru.Kamukura",
+              "desc": "We are good sisters who like to chat and send eachother cute things. (Cat pictures, mostly)",
+              "icon": "gallery/izuru.jpg"
+          },
+          {
               "title": "Scarlett",
               "link": "https://github.com/Kayicide",
               "desc": "We seem to share similar interests and talking casually is fun.",
-              "icon": "https://cdn.discordapp.com/avatars/126445452710248449/a_7df8e9a9ec1381b2ab7b841433fe8d99?size=1024"
+              "icon": "gallery/scarlett.jpg"
           },
           {
               "title": "Evelyn",
@@ -72,7 +84,7 @@
               "title": "Ms. C",
               "link": "#NONE",
               "desc": "Added eachother via a group we were both in.",
-              "icon": "https://cdn.discordapp.com/avatars/286301734865862657/a760e70d40817265cfa1afe5d0431607?size=1024"
+              "icon": ""
           },
           {
               "title": "@nothingmoder",
@@ -81,22 +93,10 @@
               "icon": "https://ugc.production.linktr.ee/UuhtMc7hSjW3wmiUz3i9_4gMwS4AchO8wf1u1?io=true&size=avatar-v3_0"
           },
           {
-              "title": "ozoi",
-              "link": "https://twitter.com/ozoicat",
-              "desc": "We don't talk often but you are kind and very cool.",
-              "icon": "https://pbs.twimg.com/profile_images/1835664912107859968/6L2yzMHK_400x400.jpg"
-          },
-          {
               "title": "Anon",
               "link": "https://www.roblox.com/users/318134745/profile",
               "desc": "Although I cannot remember exactly how we've met, I am glad to be friends with you.",
               "icon": "https://cdn.discordapp.com/avatars/231200216630558720/8f50d819cc90584a4b9d7ddf8690c1a8?size=1024"
-          },
-          {
-              "title": "@Fluoridebrain",
-              "link": "https://twitter.com/Fluoridebrain",
-              "desc": "Skilled artist that makes cute and relatable art. Also liked the conversations we've had in the past.",
-              "icon": "https://cdn.discordapp.com/avatars/658978957093502997/6e99d94c9bb66c4725a2cb66a70a9667?size=1024"
           },
           {
               "title": "lvca",
@@ -120,13 +120,19 @@
               "title": "revive4770",
               "link": "https://twitter.com/revive4770",
               "desc": "We used to talk often, but things went wrong along the way.",
-              "icon": "https://pbs.twimg.com/profile_images/1831601777109536768/JQEu5uK3_400x400.jpg"
+              "icon": "https://pbs.twimg.com/profile_images/1848244716845862912/rpPP4Q75_400x400.jpg"
           },
           {
               "title": "Jara",
               "link": "https://github.com/thatpinkleaf",
               "desc": "We seem to share a similar fate and interest in hobbies and sports.",
               "icon": "https://avatars.githubusercontent.com/u/81758642?v=4"
+          },
+          {
+              "title": "Linn",
+              "link": "https://x.com/linny4puppy",
+              "desc": "Found eachother via tagmap and we keep in touch.",
+              "icon": "https://pbs.twimg.com/profile_images/1828216300755111936/TzazkXQZ_400x400.jpg"
           },
           {
               "title": "spooks",
@@ -147,16 +153,16 @@
               "icon": "https://pbs.twimg.com/profile_images/1800594693933486080/Tm6dR6zD_400x400.jpg"
           },
           {
+              "title": "Emilia",
+              "link": "https://x.com/SilosKitty",
+              "desc": "We have our differences and most likely don't agree on a lot of things. But that doesn't mean I dislike you. We're sisters, after all.",
+              "icon": "https://pbs.twimg.com/profile_images/1854429492061855744/HNJrZjug_400x400.jpg"
+          },
+          {
               "title": "nya",
               "link": "https://twitter.com/nya_meoww",
               "desc": "We don't talk often but I really hope you're doing better in life.",
               "icon": "https://pbs.twimg.com/profile_images/1355261254152163334/KEb7ySXh_400x400.jpg"
-          },
-          {
-              "title": "Bezel",
-              "link": "#NONE",
-              "desc": "We slowly faded away from each other but I still love you as a friend nonetheless.",
-              "icon": ""
           },
           {
               "title": "crystal",
@@ -172,7 +178,7 @@
           {
               "title": "Ray(?)",
               "link": "https://twitter.com/@remivent",
-              "desc": "We used to talk about serious topics. I hope you're in a better place. \n\nLast message: 2022-12-07",
+              "desc": "We used to talk about serious topics. I hope you're in a better place. \nPossibly deceased.\nLast message: 2022-12-07",
               "icon": ""
           },
           {
@@ -180,6 +186,24 @@
               "link": "https://reddit.com/u/pumatwins",
               "desc": "We talked on Twitter and I remember your shock at our age-gap. \n\nLast message: 2022-1?-??",
               "icon": "https://www.redditstatic.com/shreddit/assets/snoovatar-back-64x64px.png"
+          },
+          {
+              "title": "@Fluoridebrain",
+              "link": "https://twitter.com/Fluoridebrain",
+              "desc": "Skilled artist that makes cute and relatable art. Also liked the conversations we've had in the past. \nLikely deceased.\nLast message: 2024-03-26",
+              "icon": "https://cdn.discordapp.com/avatars/658978957093502997/6e99d94c9bb66c4725a2cb66a70a9667?size=1024"
+          },
+          {
+              "title": "LOCKHEEDLESBIAN",
+              "link": "https://twitter.com/LOCKHEEDLESBIAN",
+              "desc": "We used to talk about being transgender, christianity, and more. \nLikely deceased.\nLast message: 2022-??-??",
+              "icon": ""
+          },
+          {
+              "title": "ozoi",
+              "link": "https://twitter.com/ozoicat",
+              "desc": "We don't talk often but you are kind and very cool. \n\nLast message: 2024-04-16",
+              "icon": "https://pbs.twimg.com/profile_images/1835664912107859968/6L2yzMHK_400x400.jpg"
           }
       ]
   }
