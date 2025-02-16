@@ -1,4 +1,4 @@
-import { defineComponent, ref, onMounted, Fragment } from 'vue';
+import { defineComponent, ref, onMounted, onUnmounted, Fragment } from 'vue';
 import styles from './lastfm.module.sass';
 
 export default defineComponent({
@@ -6,11 +6,23 @@ export default defineComponent({
   setup() {
     const isLoading = ref(true);
     const currentTrack = ref<any>(null);
+    const intervalId = ref<number | null>(null); // Store interval ID
 
     const lastFmApiKey = import.meta.env.VITE_LASTFM_API_KEY;
     const lastFmUsername = import.meta.env.VITE_LASTFM_USERNAME;
 
-    onMounted(fetchCurrentTrack);
+    onMounted(() => {
+      fetchCurrentTrack(); // Initial fetch
+      // Set up interval for subsequent fetches
+      intervalId.value = window.setInterval(fetchCurrentTrack, 10000);
+    });
+
+    // Clean up interval when component unmounts
+    onUnmounted(() => {
+      if (intervalId.value) {
+        clearInterval(intervalId.value);
+      }
+    });
 
     async function fetchCurrentTrack() {
       if (!lastFmApiKey || !lastFmUsername) {
