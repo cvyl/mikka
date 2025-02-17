@@ -1,7 +1,7 @@
-// ArchiveOverview.tsx
 import { defineComponent, ref, computed, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
 import BackButton from '~/components/BackButton'
-import styles from './blog.module.sass'
+import styles from './index.module.sass'
 
 interface BlogPost {
   path: string
@@ -76,6 +76,7 @@ export default defineComponent({
       posts.value = loadedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     }
 
+    // Group posts by year (descending)
     const groupedPosts = computed(() => {
       const grouped: Record<string, BlogPost[]> = {}
       posts.value.forEach((post) => {
@@ -100,33 +101,46 @@ export default defineComponent({
 
     return () => (
       <div class={styles.archivePage}>
+        {/* Back button at the top */}
         <BackButton to='/' class={styles.backButton} />
+
+        {/* Archive container with year sections */}
         <div class={styles.archiveContainer}>
           {groupedPosts.value.map((group) => (
             <div key={group.year} class={styles.yearSection}>
               <h2 class={styles.yearTitle}>{group.year}</h2>
-              {group.posts.map((post) => (
-                <div key={post.path} class={styles.archivePost}>
-                  {post.cover && (
-                    <div class={styles.thumbnail}>
-                      <img src={post.cover} alt={`Cover for ${post.title}`} />
+              {group.posts.map((post, index) => (
+                <RouterLink
+                  key={post.path}
+                  to={`/blog/${post.path}`}
+                  class={styles.postItem}
+                  style={{ transitionDelay: `${index * 0.1}s` }}
+                >
+                  <div class={styles.flexContainer}>
+                    <div>
+                      <div class={styles.title}>
+                        <span>{post.title}</span>
+                      </div>
+                      <div class={styles.date}>
+                        {new Date(post.date).toLocaleDateString()}
+                      </div>
+                      {post.description && (
+                        <div class={styles.desc}>{post.description}</div>
+                      )}
+                      {/* Optional extra metadata: tags, category, comment */}
+                      {post.tags?.length > 0 && (
+                        <div class={styles.tags}>Tags: {post.tags.join(', ')}</div>
+                      )}
+                      <div class={styles.category}>Category: {post.category}</div>
+                      {post.comment && <div class={styles.comment}>Comment: {post.comment}</div>}
                     </div>
-                  )}
-                  <div class={styles.postDetails}>
-                    <p class={styles.postDate}>{new Date(post.date).toLocaleDateString()}</p>
-                    <h3 class={styles.postTitle}>{post.title}</h3>
-                    <p class={styles.postCategory}>Category: {post.category}</p>
-                    {post.tags?.length > 0 && (
-                      <p class={styles.postTags}>Tags: {post.tags.join(', ')}</p>
-                    )}
-                    {post.description && (
-                      <p class={styles.postDescription}>{post.description}</p>
-                    )}
-                    {post.comment && (
-                      <p class={styles.postComment}>Comment: {post.comment}</p>
+
+                    {post.cover && (
+                      <img src={post.cover} alt={post.title} class={styles.banner} />
                     )}
                   </div>
-                </div>
+                  <div class={styles.hf} />
+                </RouterLink>
               ))}
             </div>
           ))}

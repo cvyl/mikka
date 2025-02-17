@@ -15,13 +15,14 @@ export default defineComponent({
 		const loadPost = async () => {
 			// Grab the dynamic part from the URL, e.g. /cloudflare-ai-worker => 'cloudflare-ai-worker'
 			const slug = route.params.slug as string | undefined
+      console.log(slug)
 			if (!slug) {
 				router.push('/')
 				return
 			}
 
 			// Load all .md files from the ../blog folder
-			const markdownFiles = import.meta.glob('../blog/*.md', { as: 'raw' })
+			const markdownFiles = import.meta.glob('../../blog/*.md', { as: 'raw' })
 
 			// Look for a file whose name matches the slug
 			let matchedPath: string | null = null
@@ -36,7 +37,7 @@ export default defineComponent({
 			if (matchedPath) {
 				try {
 					const content = await markdownFiles[matchedPath]()
-					postHTML.value = marked(content)
+					postHTML.value = await marked(content)
 				} catch (error) {
 					router.push('/')
 				}
