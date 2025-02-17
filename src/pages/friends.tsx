@@ -1,4 +1,4 @@
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent, ref, onMounted, Fragment } from 'vue'
 import BackButton from '~/components/BackButton'
 import styles from './friends.module.sass'
 
@@ -12,7 +12,7 @@ export default defineComponent({
       try {
         const response = await fetch('./friends.json')
         const data = await response.json()
-        friendsSections.value = data
+        friendsSections.value = data as any[]
       } catch (error) {
         console.error('Error fetching friends data:', error)
       } finally {

@@ -1,4 +1,5 @@
 import { defineComponent, ref, onMounted } from 'vue'
+import './blog.module.sass'
 
 interface BlogPost {
 	path: string
