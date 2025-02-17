@@ -8,8 +8,8 @@ export default defineComponent({
 		const currentTrack = ref<any>(null)
 		const intervalId = ref<number | null>(null) // Store interval ID
 
-		const lastFmApiKey = import.meta.env.VITE_LASTFM_API_KEY
-		const lastFmUsername = import.meta.env.VITE_LASTFM_USERNAME
+		const lastFmApiKey = '0cd5233e03c3bfc97b90a307302a1542'
+		const lastFmUsername = 'Transfeminine'
 
 		onMounted(() => {
 			fetchCurrentTrack()
