@@ -15,7 +15,7 @@ interface BlogPost {
 }
 
 export default defineComponent({
-  name: 'ArchiveOverview',
+  name: 'BlogIndexOverview',
   setup() {
     const posts = ref<BlogPost[]>([])
 
@@ -100,15 +100,15 @@ export default defineComponent({
     })
 
     return () => (
-      <div class={styles.archivePage}>
+      <div class={styles.blogIndexPage}>
         {/* Back button at the top */}
         <BackButton to='/' class={styles.backButton} />
 
-        {/* Archive container with year sections */}
-        <div class={styles.archiveContainer}>
+        {/* Blog index container with year sections */}
+        <div class={styles.blogIndexContainer}>
           {groupedPosts.value.map((group) => (
-            <div key={group.year} class={styles.yearSection}>
-              <h2 class={styles.yearTitle}>{group.year}</h2>
+            <div key={group.year} class={styles.blogIndexYearSection}>
+              <h2 class={styles.blogIndexYearTitle}>{group.year}</h2>
               {group.posts.map((post, index) => (
                 <RouterLink
                   key={post.path}
