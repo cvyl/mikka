@@ -5,7 +5,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { marked } from 'marked'
 
 // Load all .md files from the ../blog folder
-const markdownFiles = import.meta.glob('../../blog/*.md', { as: 'raw' })
+const markdownFiles = import.meta.glob('../../blog/*.md', { query: '?raw', import: 'default' })
 
 export default defineComponent({
 	name: 'DynamicBlogPost',
@@ -34,6 +34,7 @@ export default defineComponent({
 			if (matchedPath) {
 				try {
 					const content = await markdownFiles[matchedPath]()
+					if (typeof content !== 'string') throw new Error('Invalid content type')
 					postHTML.value = await marked(content)
 				} catch (error) {
 					router.push('/')
@@ -53,7 +54,7 @@ export default defineComponent({
 
 // **Static Paths for Vite SSG**
 export const getStaticPaths = async () => {
-	const markdownFiles = import.meta.glob('../../blog/*.md', { as: 'raw' })
+	const markdownFiles = import.meta.glob('../../blog/*.md', { query: '?raw', import: 'default' })
 
 	const paths = Object.keys(markdownFiles).map((path) => {
 		const fileName = path.split('/').pop()?.replace('.md', '')
