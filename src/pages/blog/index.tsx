@@ -104,38 +104,42 @@ export default defineComponent({
 				{/* Back button at the top */}
 				<BackButton to='/' class={styles.backButton} />
 
-				{/* Blog index container with year sections */}
-				<div class={styles.blogIndexContainer}>
-					{groupedPosts.value.map((group) => (
-						<div key={group.year} class={styles.blogIndexYearSection}>
-							<h2 class={styles.blogIndexYearTitle}>{group.year}</h2>
-							{group.posts.map((post, index) => (
-								<RouterLink
-									key={post.path}
-									to={`/blog/${post.path}`}
-									class={styles.postItem}
-									style={{ transitionDelay: `${index * 0.1}s` }}
-								>
-									<div class={styles.flexContainer}>
-										<div>
-											<div class={styles.title}>
-												<span>{post.title}</span>
-											</div>
-											<div class={styles.date}>{new Date(post.date).toLocaleDateString()}</div>
-											{post.description && <div class={styles.desc}>{post.description}</div>}
-											{post.tags?.length > 0 && <div class={styles.tags}>Tags: {post.tags.join(', ')}</div>}
-											<div class={styles.category}>Category: {post.category}</div>
-											{post.comment && <div class={styles.comment}>Comment: {post.comment}</div>}
-										</div>
-										{post.cover && <img src={post.cover} alt={post.title} class={styles.banner} />}
-									</div>
-									<div class={styles.hf} />
-								</RouterLink>
-							))}
-						</div>
-					))}
-				</div>
-			</div>
+        {/* Blog index container with year sections */}
+        <div class={styles.blogIndexContainer}>
+          {groupedPosts.value.map((group) => (
+            <div key={group.year} class={styles.blogIndexYearSection}>
+              <h2 class={styles.blogIndexYearTitle}>{group.year}</h2>
+              {group.posts.map((post, index) => (
+                <div key={post.path} class={styles.postItem} style={{ transitionDelay: `${index * 0.1}s` }}>
+                  <div class={styles.flexContainer}>
+                    <div>
+                    <div class={styles.category}>{post.category}</div>
+                      <div class={styles.title}>
+                        <RouterLink to={`/blog/${post.path}`}>
+                          <span>{post.title}</span>
+                        </RouterLink>
+                      </div>
+                      <div class={styles.date}>{new Date(post.date).toLocaleDateString()}</div>
+                      {post.description && <div class={styles.desc}>{post.description}</div>}
+                      {post.tags?.length > 0 && (
+                        <div class={styles.tags}>
+                          {post.tags.map(tag => (
+                            <span class={styles.tag} key={tag}>#{tag} </span>
+                          ))}
+                        </div>
+                      )}
+                      {/*{post.comment && <div class={styles.comment}>Comment: {post.comment}</div>}*/}
+                    </div>
+                    {post.cover && <img src={post.cover} alt={post.title} class={styles.banner} />}
+                  </div>
+                  <div class={styles.hf} />
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
 		)
 	}
 })
