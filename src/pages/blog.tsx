@@ -7,6 +7,8 @@ interface BlogPost {
 	tags: string[]
 	category: string
 	description?: string
+  cover?: string
+  comment?: string
 }
 
 export default defineComponent({
@@ -64,13 +66,15 @@ export default defineComponent({
 						return null
 					}
 
-					const post = {
+					const post: BlogPost = {
 						path: path.replace('/src/blog/', '').replace('.md', ''),
 						title: metadata.title || 'Untitled',
 						date: metadata.date || new Date().toISOString(),
 						tags: metadata.tags || [],
 						category: metadata.category || 'Uncategorized',
-						description: metadata.description
+						description: metadata.description,
+            cover: metadata.cover,
+            comment: metadata.comment
 					}
 
 					console.log('Successfully processed:', post.path, post) // Debug log
@@ -99,6 +103,8 @@ export default defineComponent({
 						<p>Date: {new Date(post.date).toLocaleDateString()}</p>
 						<p>Category: {post.category}</p>
 						<p>Tags: {post.tags.join(', ')}</p>
+            <p>Comment: {post.comment}</p>
+            <p>Cover: {post.cover}</p>
 					</div>
 				))}
 			</div>

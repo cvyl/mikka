@@ -1,70 +1,104 @@
-.friendContainer
+.friendsContainer
+  display: flex
+  flex-direction: column
+  align-items: center
   position: absolute
+  left: 0
   top: 0
   bottom: 0
-  left: 50%
-  transform: translateX(-50%)
-  z-index: 1
-  width: 500px
+  width: 100vw
   overflow-x: hidden
-  overflow-y: auto
-  backdrop-filter: blur(5px)
-  background-color: rgba(255, 255, 255, 0.15)
+  overflow-y: hidden
   min-height: 100vh
   max-height: 100vh
   height: 100vh
-  border: 1px solid #eaeaea
-  border-radius: 5px
+  background-color: rgba(255, 255, 255, 0.15)
+
+.back
+  position: absolute
+  top: 10px
+  left: 10px
+  height: 48px
+  color: #303133
+  z-index: 233
+
+.main
+  width: 90%
+  max-width: 1200px
+  margin: 0 auto
+  position: relative
+  overflow: auto
+  padding-top: 60px
+  scroll-behavior: smooth
+  // Hide scrollbar in Firefox
+  scrollbar-width: none
+  // Hide scrollbar in IE and Edge
+  -ms-overflow-style: none
+  &::-webkit-scrollbar
+    display: none
+
+.loading
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  display: flex
+  justify-content: center
+  align-items: center
+  font-size: 24px
+
+.tabs
+  display: flex
+  justify-content: center
+  margin-bottom: 20px
+
+.tabButton
+  background: transparent
+  border: none
+  font-size: 1rem
+  margin: 0 10px
+  padding: 10px 20px
+  cursor: pointer
+  color: #303133
+  border-bottom: 2px solid transparent
+  //simple select animation effect
+  transition: border-color 0.3s
+
+.activeTab
+  border-color: #303133
+  font-weight: bold
+
+.tabContent
+  // Optional: additional styling for tab content can go here
+
+.friendsGrid
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+  gap: 20px
+  justify-items: center
+
+.friendItem
   display: flex
   flex-direction: column
-  color: #303133
+  align-items: center
+  padding: 10px
+  background-color: #fff
+  border-radius: 8px
+  text-align: center
+  text-decoration: none
+  color: inherit
+  width: 100%
 
-  @media (max-width: 500px)
-    width: 100vw
-    border-radius: 0
-    left: 0
-    top: 0
-    transform: none
-    background-color: rgba(255, 255, 255, 0.3)
+.friendItem img
+  width: 50px
+  height: 50px
+  border-radius: 50%
+  margin-bottom: 10px
 
-  @media (min-width: 1300px)
-    width: 1000px
+.friendItemTitle
+  font-size: 1.2rem
+  margin-bottom: 5px
 
-  .scrollBox
-    overflow-x: hidden
-    overflow-y: auto
-    height: inherit
-    width: 100%
-
-    .groupBox
-      &::after
-        content: ''
-        display: block
-        height: 10px
-        min-height: 10px
-
-      .links
-        padding: 0 15px
-        display: grid
-        column-gap: 15px
-        grid-template-columns: 1fr
-
-        @media (min-width: 1300px)
-          grid-template-columns: 1fr 1fr
-
-      .title
-        position: sticky
-        top: 0
-        height: 85px
-        z-index: 1
-        width: 100%
-        background: radial-gradient(rgba(255, 255, 255, 0.2), #fff 2px)
-        background-size: 3px 3px
-        backdrop-filter: saturate(50%) blur(4px)
-        color: #303133
-        font-size: x-large
-        display: flex
-        justify-content: center
-        align-items: center
-        @media (max-width: 500px)
-          width: 100vw
+.friendItemDesc
+  font-size: 0.9rem
+  color: #606266
