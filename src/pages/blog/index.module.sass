@@ -3,8 +3,12 @@
   width: 100%
   min-height: 100vh
   padding: 2rem
-  background-color: #EDF8F6
   overflow: auto
+  scrollbar-width: none
+  -ms-overflow-style: none
+  &::-webkit-scrollbar
+    display: none
+  scroll-behavior: smooth
 
 .backButton
   position: absolute
@@ -31,19 +35,21 @@
 
 /* Each post is a clickable card */
 .postItem
-  padding: 15px 15px 0 15px
+  display: block
+  overflow: hidden
+  padding: 15px
   margin-bottom: 1.5rem
   background-color: rgba(255, 255, 255, 0.7)
   backdrop-filter: blur(5px)
   border-radius: 5px
   border: 1px solid #eaeaea
-  transition: all 0.2s
+  background-clip: padding-box
+  transition: background-color 0.2s ease
 
   &:hover
     background-color: rgba(255, 255, 255, 0.85)
-
     .title > span
-      box-shadow: inset 0 -0.1666666667em 0 0 #fff, inset 0 -0.3333333333em 0 0 #A7F3D0
+      box-shadow: inset 0 -0.1667em 0 0 #fff, inset 0 -0.3333em 0 0 #A7F3D0
 
 .flexContainer
   display: flex
@@ -99,4 +105,4 @@
 .hf
   margin: 15px 0 0 0
   height: 0
-  border-bottom: 1px solid rgba(128, 128, 128, .12)
+  border-bottom: 1px solid rgba(128, 128, 128, 0.12)

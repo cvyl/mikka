@@ -127,14 +127,12 @@ export default defineComponent({
                       {post.description && (
                         <div class={styles.desc}>{post.description}</div>
                       )}
-                      {/* Optional extra metadata: tags, category, comment */}
                       {post.tags?.length > 0 && (
                         <div class={styles.tags}>Tags: {post.tags.join(', ')}</div>
                       )}
                       <div class={styles.category}>Category: {post.category}</div>
                       {post.comment && <div class={styles.comment}>Comment: {post.comment}</div>}
                     </div>
-
                     {post.cover && (
                       <img src={post.cover} alt={post.title} class={styles.banner} />
                     )}
