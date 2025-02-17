@@ -12,8 +12,8 @@ import remarkGfm from 'remark-gfm';
 import rehypePrism from '@mapbox/rehype-prism';
 import autoprefixer from 'autoprefixer';
 import SvgLoader from 'vite-svg-loader';
-import rehypeKatex from 'rehype-katex'
-import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
 
 export default defineConfig({
   resolve: {
@@ -34,13 +34,11 @@ export default defineConfig({
 
     SvgLoader(),
 
-    // https://github.com/hannoeru/vite-plugin-pages
     Pages({
       extensions: ['tsx'],
       caseSensitive: true,
     }),
 
-    // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: [
         'vue',
@@ -52,7 +50,6 @@ export default defineConfig({
       dts: 'src/auto-imports.d.ts',
     }),
 
-    // https://github.com/antfu/vite-plugin-pwa
     VitePWA({
       registerType: 'autoUpdate',
       manifestFilename: 'manifest.json',
@@ -78,13 +75,9 @@ export default defineConfig({
       },
     }),
 
-    // https://github.com/antfu/vite-plugin-inspect
-    // Visit http://localhost:3333/__inspect/ to see the inspector
     Inspect(),
 
     Content(),
-
-
   ],
 
   build: {
@@ -106,22 +99,34 @@ export default defineConfig({
       preserveEntrySignatures: 'exports-only',
     },
   },
-  // https://github.com/antfu/vite-ssg
+
   ssgOptions: {
     script: 'async',
     formatting: 'minify',
     onFinished() {
-      // @ts-ignore
       generateSitemap({
         hostname: 'https://cvyl.me',
       });
     },
     includedRoutes(paths, routes) {
-      // use original route records
-      const pathsRet = routes.flatMap((route) => {
-        return route.path;
-      });
-      return pathsRet;
+      // 1. Filter out the placeholder route
+      const filteredPaths = paths.filter(route => !route.includes(':'));
+
+      // 2. Collect the actual blog slugs from src/blog
+      const blogDir = path.resolve(__dirname, 'src/blog');
+      if (!fs.existsSync(blogDir)) {
+        console.error("[vite-ssg] ERROR: 'src/blog' directory not found!");
+        return filteredPaths;
+      }
+
+      const blogPosts = fs.readdirSync(blogDir)
+        .filter(file => file.endsWith('.md'))
+        .map(file => `/blog/${file.replace('.md', '')}`);
+
+      // 3. Merge them to get final routes
+      const finalRoutes = [...filteredPaths, ...blogPosts];
+      console.log("[vite-ssg] Included Routes:", finalRoutes);
+      return finalRoutes;
     },
   },
 
