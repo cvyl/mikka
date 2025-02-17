@@ -1,10 +1,7 @@
-// pages/[slug].tsx
-
 import { defineComponent, ref, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { marked } from 'marked'
 
-// Load all .md files from the ../blog folder
 const markdownFiles = import.meta.glob('../../blog/*.md', { query: '?raw', import: 'default' })
 
 export default defineComponent({
@@ -51,17 +48,3 @@ export default defineComponent({
 		return () => <div>{loading.value ? <p>Loading...</p> : <div innerHTML={postHTML.value}></div>}</div>
 	}
 })
-
-// **Static Paths for Vite SSG**
-export const getStaticPaths = async () => {
-	const markdownFiles = import.meta.glob('../../blog/*.md', { query: '?raw', import: 'default' })
-
-	const paths = Object.keys(markdownFiles).map((path) => {
-		const fileName = path.split('/').pop()?.replace('.md', '')
-		return `/blog/${fileName}`
-	})
-
-	console.log('[vite-ssg] Static Paths:', paths) // Debugging log
-
-	return paths
-}

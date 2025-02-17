@@ -1,0 +1,37 @@
+.signatureAnimated
+  path
+    stroke-dasharray: 4350
+    stroke-dashoffset: 4350
+    fill: transparent
+    animation: drawSignature 6.5s linear infinite both
+    stroke-width: 2px
+    stroke: #000
+
+@keyframes drawSignature
+  0%
+    stroke-dashoffset: 4350
+
+  15%
+    fill: transparent
+
+  35%,
+  75%
+    stroke-dashoffset: 0
+    fill: #000
+
+  90%,
+  100%
+    stroke-dashoffset: 4350
+    fill: transparent
+
+.size
+  margin-top: 16px
+  width: 50vw
+
+
+.container
+  display: flex
+  height: 100vh
+  flex-direction: column
+  align-items: center
+  justify-content: center
