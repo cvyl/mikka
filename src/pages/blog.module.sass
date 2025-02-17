@@ -1,0 +1,90 @@
+/* blog.module.sass */
+.archivePage
+  position: relative
+  width: 100%
+  min-height: 100vh
+  background-color: #EDF8F6
+  overflow: auto
+  padding: 2rem
+
+.backButton
+  position: absolute
+  top: 1rem
+  left: 1rem
+  z-index: 10
+
+.archiveContainer
+  margin-top: 3rem
+  padding: 1rem
+
+.yearSection
+  margin-bottom: 2rem
+
+.yearTitle
+  font-size: 2rem
+  margin-bottom: 1rem
+  color: #303133
+  border-bottom: 1px solid #eaeaea
+  padding-bottom: 0.5rem
+
+.archivePost
+  display: flex
+  align-items: flex-start
+  margin-bottom: 1rem
+  padding: 1rem
+  border-radius: 5px
+  background-color: rgba(255, 255, 255, 0.15)
+  backdrop-filter: blur(5px)
+  border: 1px solid #eaeaea
+  transition: background-color 0.3s ease
+
+  &:hover
+    background-color: rgba(255, 255, 255, 0.3)
+
+.thumbnail
+  width: 120px
+  height: 90px
+  margin-right: 1rem
+  overflow: hidden
+  border-radius: 5px
+
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+
+.postDetails
+  flex: 1
+  display: flex
+  flex-direction: column
+  font-size: 1.1rem
+
+.postDate
+  font-size: 0.9rem
+  color: #606266
+  margin: 0 0 0.5rem 0
+
+.postTitle
+  font-size: 1.3rem
+  margin: 0 0 0.5rem 0
+  color: #303133
+
+.postCategory
+  font-size: 1rem
+  color: #909399
+  margin: 0 0 0.5rem 0
+
+.postTags
+  font-size: 1rem
+  color: #606266
+  margin: 0 0 0.5rem 0
+
+.postDescription
+  font-size: 1rem
+  color: #303133
+  margin: 0 0 0.5rem 0
+
+.postComment
+  font-size: 1rem
+  color: #303133
+  margin: 0 0 0.5rem 0
