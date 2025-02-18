@@ -5,7 +5,7 @@ import { RouterLink } from 'vue-router'
 import SocialNetworks from '~/components/SocialNetworks'
 import LastFm from '~/components/lastfm'
 import 'tg-blog/dist/style.css'
-import './tgblogIndex.sass'
+import './tgblogContainer.sass'
 
 export default defineComponent({
 	setup() {
@@ -39,6 +39,13 @@ export default defineComponent({
 					lifeFeedRef.value.style.transform = 'translateY(0)'
 				}, 300)
 			}
+
+			// Add style to hide search
+			const style = document.createElement('style')
+			//add id to style
+			style.id = 'tgblogStyle'
+			style.innerHTML = `.tgblogContainer .search { display: none !important; }`
+			document.head.appendChild(style)
 		})
 
 		function hoverHandler(e) {

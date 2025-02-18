@@ -1,6 +1,7 @@
 import { defineComponent, ref, onMounted } from 'vue'
 import styles from './life.module.sass'
 import BackButton from '~/components/BackButton'
+import 'tg-blog/dist/style.css'
 import './tgblogContainer.sass'
 
 export default defineComponent({
@@ -31,13 +32,12 @@ export default defineComponent({
 			<div class={styles.sharesContainer}>
 				<BackButton to='/' class={styles.back} />
 				<div class={styles.main}>
-					{/* Render TgBlog component only if it's loaded */}
-	{/*		{TgBlog.value && ( */}
+					{TgBlog.value && (
 						<TgBlog.value
 							postsUrl='https://raw.githubusercontent.com/cvyl/blog-feed/gh-pages/exports/menhera7/posts.json'
-							class='tgblogContainer2'
+							class='tgblogContainer'
 						/>
-					{/*)} */}
+					)}
 				</div>
 			</div>
 		)
