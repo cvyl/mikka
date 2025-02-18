@@ -33,12 +33,12 @@ export default defineComponent({
 				<BackButton to='/' class={styles.back} />
 				<div class={styles.main}>
 					{/* Render TgBlog component only if it's loaded */}
-					{TgBlog.value && (
+	{/*		{TgBlog.value && ( */}
 						<TgBlog.value
 							postsUrl='https://raw.githubusercontent.com/cvyl/blog-feed/gh-pages/exports/menhera7/posts.json'
 							class='tgblogContainer'
 						/>
-					)}
+					{/*)} */}
 				</div>
 			</div>
 		)
