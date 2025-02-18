@@ -48,11 +48,10 @@ export default defineComponent({
             <img
               class={styles.albumArt}
               src={
-                currentTrack.value.image?.length > 1
-                  ? currentTrack.value.image[2]?.['#text']
-                  : 'noart.png'
+                currentTrack.value.image?.[2]?.['#text'] ||
+                '/noart.png'
               }
-              alt='Album Art'
+              alt={`Album Art for ${currentTrack.value.name}`}
             />
             <div class={styles.info}>
               <a class={styles.title} href={currentTrack.value.url} target='_blank' rel='noopener noreferrer'>
