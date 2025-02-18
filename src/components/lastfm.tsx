@@ -48,7 +48,7 @@ export default defineComponent({
 						<img
 							class={styles.albumArt}
 							src={
-								currentTrack.value.image?.[2]?.['#text'] ?? 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
+								currentTrack.value.image?.[2]?.['#text'] ?? 'noart.png'
 							}
 							alt='Album Art'
 						/>
