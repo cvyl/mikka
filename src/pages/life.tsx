@@ -1,8 +1,8 @@
+import { defineComponent, ref, onMounted } from 'vue'
 import styles from './life.module.sass'
 import BackButton from '~/components/BackButton'
 import 'tg-blog/dist/style.css'
 import './tgblogContainer.sass'
-import { defineComponent, ref, onMounted } from 'vue'
 
 export default defineComponent({
 	setup() {

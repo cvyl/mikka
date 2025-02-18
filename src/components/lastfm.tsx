@@ -45,7 +45,7 @@ export default defineComponent({
 				{isLoading.value && <div>Loading...</div>}
 				{!isLoading.value && currentTrack.value && (
 					<>
-						<img class={styles.albumArt} src={currentTrack.value.image?.[2]?.['#text']} />
+						<img class={styles.albumArt} src={currentTrack.value.image?.[2]?.['#text'] ?? 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='} alt='Album Art' />
 						<div class={styles.info}>
 							<a class={styles.title} href={currentTrack.value.url} target='_blank' rel='noopener noreferrer'>
 								{currentTrack.value.name}
