@@ -44,28 +44,30 @@ export default defineComponent({
 			<div class={styles.lastFmContainer}>
 				{isLoading.value && <div>Loading...</div>}
 				{!isLoading.value && currentTrack.value && (
-					<>
-						<img
-							class={styles.albumArt}
-							src={
-								currentTrack.value.image?.[2]?.['#text'] ?? 'noart.png'
-							}
-							alt='Album Art'
-						/>
-						<div class={styles.info}>
-							<a class={styles.title} href={currentTrack.value.url} target='_blank' rel='noopener noreferrer'>
-								{currentTrack.value.name}
-							</a>
-							<div class={styles.artist}>{currentTrack.value.artist['#text']}</div>
+          <>
+            <img
+              class={styles.albumArt}
+              src={
+                currentTrack.value.image?.length > 1
+                  ? currentTrack.value.image[2]?.['#text']
+                  : 'noart.png'
+              }
+              alt='Album Art'
+            />
+            <div class={styles.info}>
+              <a class={styles.title} href={currentTrack.value.url} target='_blank' rel='noopener noreferrer'>
+                {currentTrack.value.name}
+              </a>
+              <div class={styles.artist}>{currentTrack.value.artist['#text']}</div>
 
-							{/* Check if the track is currently playing */}
-							{currentTrack.value['@attr']?.nowplaying ? (
-								<div class={styles.status}>Now Playing</div>
-							) : (
-								<div class={styles.status}>Last Played</div>
-							)}
-						</div>
-					</>
+              {/* Check if the track is currently playing */}
+              {currentTrack.value['@attr']?.nowplaying ? (
+                <div class={styles.status}>Now Playing</div>
+              ) : (
+                <div class={styles.status}>Last Played</div>
+              )}
+            </div>
+          </>
 				)}
 				{!isLoading.value && !currentTrack.value && <div>Not currently playing anything</div>}
 			</div>
