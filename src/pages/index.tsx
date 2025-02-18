@@ -3,7 +3,7 @@ import { useHead } from '@vueuse/head'
 import styles from './index.module.sass'
 import { RouterLink } from 'vue-router'
 import SocialNetworks from '~/components/SocialNetworks'
-import LastFm from '~/components/lastfm' // Adjust the path as needed
+import LastFm from '~/components/lastfm'
 import 'tg-blog/dist/style.css'
 import './tgblogIndex.sass'
 
