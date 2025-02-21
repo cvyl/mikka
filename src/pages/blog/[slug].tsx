@@ -1,4 +1,4 @@
-import { defineComponent, ref, onMounted, watch } from 'vue'
+import { defineComponent, ref, onMounted, watch, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { marked } from 'marked'
 import { useHead } from '@vueuse/head'
@@ -12,42 +12,26 @@ export default defineComponent({
 	setup() {
 		const route = useRoute()
 		const router = useRouter()
-
-		// Reactive data
-		const metadata = ref<Record<string, any>>({})
-		const postContent = ref<string>('')
+		const postHTML = ref('')
+		const title = ref('')
+		const description = ref('')
+		const date = ref('')
+		const tags = ref<string[]>([])
+		const cover = ref('')
+		const loading = ref(true)
 		const toc = ref<Array<{ id: string; text: string; level: number }>>([])
 
-		// Helper: Slugify headings for TOC
-		const slugify = (text: string) =>
-			text.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '')
-
-		// Extract metadata and remove frontmatter from content
-		const extractMetadata = (content: string) => {
-			const meta: Record<string, any> = {}
-			const match = content.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/)
-			if (match) {
-				match[1].split('\n').forEach((line) => {
-					const [key, ...rest] = line.split(':')
-					if (key && rest.length) {
-						let value = rest.join(':').trim()
-						if (key === 'tags') {
-							value = value.replace(/^\[|\]$/g, '').split(',').map((tag) => tag.trim())
-						} else {
-							value = value.replace(/^["'](.*)["']$/, '$1')
-						}
-						meta[key.trim()] = value
-					}
-				})
-				content = content.replace(match[0], '').trim()
-			}
-			return { metadata: meta, content }
+		function slugify(text: string) {
+			return text
+				.toLowerCase()
+				.trim()
+				.replace(/\s+/g, '-')
+				.replace(/[^\w\-]+/g, '')
 		}
 
-		// Generate Table of Contents
-		const generateTOC = (html: string) => {
+		function updateTOC() {
 			const tempDiv = document.createElement('div')
-			tempDiv.innerHTML = html
+			tempDiv.innerHTML = postHTML.value
 			const headings = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6')
 			const newTOC: Array<{ id: string; text: string; level: number }> = []
 			headings.forEach((heading) => {
@@ -59,82 +43,108 @@ export default defineComponent({
 				}
 				newTOC.push({ id: heading.id, text, level })
 			})
-			return { toc: newTOC, updatedHTML: tempDiv.innerHTML }
+			postHTML.value = tempDiv.innerHTML
+			toc.value = newTOC
 		}
 
-		// Load post markdown
+		const parseFrontmatter = (content: string) => {
+			const match = content.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/)
+			if (!match) return null
+			const frontmatter = match[1]
+			const data: Record<string, any> = {}
+			frontmatter.split('\n').forEach((line) => {
+				const colonIndex = line.indexOf(':')
+				if (colonIndex === -1) return
+				const key = line.slice(0, colonIndex).trim()
+				let value = line.slice(colonIndex + 1).trim()
+				if (key === 'tags') {
+					data[key] = value
+						.replace(/^\[|\]$/g, '')
+						.split(',')
+						.map((tag) => tag.trim())
+				} else {
+					data[key] = value.replace(/^["'](.*)["']$/, '$1')
+				}
+			})
+			return data
+		}
+
 		const loadPost = async () => {
 			const slug = route.params.slug as string | undefined
 			if (!slug) {
 				router.push('/')
 				return
 			}
-
 			let matchedPath: string | null = null
 			for (const path in markdownFiles) {
-				if (path.split('/').pop()?.replace('.md', '') === slug) {
+				const fileName = path.split('/').pop()?.replace('.md', '')
+				if (fileName === slug) {
 					matchedPath = path
 					break
 				}
 			}
-
-			if (!matchedPath) {
-				router.push('/')
-				return
-			}
-
-			try {
-				const rawContent = await markdownFiles[matchedPath]()
-				if (typeof rawContent !== 'string') throw new Error('Invalid content type')
-
-				// Extract metadata
-				const { metadata: meta, content } = extractMetadata(rawContent)
-				metadata.value = meta
-
-				// Render Markdown
-				const renderedHTML = await marked(content)
-
-				// Generate TOC
-				const { toc: generatedTOC, updatedHTML } = generateTOC(renderedHTML)
-				toc.value = generatedTOC
-				postContent.value = updatedHTML
-
-				// Set metadata dynamically as soon as it's available
-				useHead({
-					title: meta.title || 'Untitled',
-					meta: [
-						{ name: 'description', content: meta.description || '' },
-						{ property: 'og:url', content: `https://cvyl.me/blog/${slug}` },
-						{ property: 'og:type', content: 'article' },
-						{ property: 'og:title', content: meta.title || 'Untitled' },
-						{ property: 'og:site_name', content: "cvyl's Blog" },
-						{ property: 'og:description', content: meta.description || '' },
-						{ property: 'og:image', content: meta.cover || '' },
-						{ property: 'article:author', content: 'cvyl' },
-						{ property: 'twitter:title', content: meta.title || 'Untitled' },
-						{ property: 'twitter:description', content: meta.description || '' },
-						{ property: 'twitter:card', content: 'summary_large_image' },
-						{ property: 'twitter:image', content: meta.cover || '' },
-						{ property: 'twitter:site', content: 'https://cvyl.me' },
-						...(meta.tags || []).map((tag) => ({ property: 'article:tag', content: tag }))
-					]
-				})
-			} catch (error) {
+			if (matchedPath) {
+				try {
+					const content = await markdownFiles[matchedPath]()
+					if (typeof content !== 'string') throw new Error('Invalid content type')
+					const metadata = parseFrontmatter(content)
+					const contentWithoutFrontmatter = content.replace(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/, '').trim()
+					if (metadata) {
+						title.value = metadata.title || 'Untitled'
+						date.value = new Date(metadata.date).toLocaleDateString()
+						tags.value = metadata.tags || []
+						cover.value = metadata.cover || ''
+						description.value = metadata.description || ''
+					}
+					postHTML.value = await marked(contentWithoutFrontmatter)
+					updateTOC()
+				} catch (error) {
+					router.push('/')
+				}
+			} else {
 				router.push('/')
 			}
+			loading.value = false
 		}
 
-		// Watch for route changes and reload post
-		watch(() => route.params.slug, loadPost, { immediate: true })
+		onMounted(loadPost)
+		watch(() => route.params.slug, loadPost)
+
+		// Use watchEffect to update metadata dynamically
+		watchEffect(() => {
+			useHead({
+				title: title.value,
+				link: [{ rel: 'canonical', href: `https://cvyl.me/blog/${route.params.slug}` }],
+				meta: [
+					{ name: 'description', content: description.value },
+					{ property: 'og:url', content: `https://cvyl.me/blog/${route.params.slug}` },
+					{ property: 'og:type', content: 'article' },
+					{ property: 'og:title', content: title.value },
+					{ property: 'og:site_name', content: "cvyl's Blog" },
+					{ property: 'og:description', content: description.value },
+					{ property: 'og:locale', content: 'en_US' },
+					{ property: 'og:image', content: cover.value },
+					{ property: 'article:author', content: 'cvyl' },
+					{ property: 'twitter:title', content: title.value },
+					{ property: 'twitter:description', content: description.value },
+					{ property: 'twitter:card', content: 'summary_large_image' },
+					{ property: 'twitter:image', content: cover.value },
+					{ property: 'twitter:site', content: 'https://cvyl.me' },
+					...tags.value.map((tag) => ({
+						property: 'article:tag',
+						content: tag
+					}))
+				]
+			})
+		})
 
 		return () => (
 			<div class={styles.postPage}>
 				<BackButton to='/blog' class={styles.backButton} />
-				{!postContent.value ? (
+				{loading.value ? (
 					<p class={styles.loading}>Loading...</p>
 				) : (
 					<div class={styles.contentWrapper}>
-						{/* TOC Section */}
 						<nav class={styles.toc}>
 							<ul>
 								{toc.value.map((item) => (
@@ -144,20 +154,18 @@ export default defineComponent({
 								))}
 							</ul>
 						</nav>
-
-						{/* Blog Post Content */}
 						<div class={styles.postContainer}>
-							{metadata.value.cover && (
+							{cover.value && (
 								<div class={styles.bannerContainer}>
-									<img src={metadata.value.cover} alt={metadata.value.title} class={styles.banner} />
+									<img src={cover.value} alt={title.value} class={styles.banner} />
 								</div>
 							)}
-							<h1 class={styles.postTitle}>{metadata.value.title}</h1>
+							<h1 class={styles.postTitle}>{title.value}</h1>
 							<div class={styles.postMeta}>
-								<span class={styles.postDate}>{new Date(metadata.value.date).toLocaleDateString()}</span>
-								{metadata.value.tags?.length > 0 && (
+								<span class={styles.postDate}>{date.value}</span>
+								{tags.value.length > 0 && (
 									<span class={styles.postTags}>
-										{metadata.value.tags.map((tag) => (
+										{tags.value.map((tag) => (
 											<span key={tag} class={styles.tag}>
 												#{tag}{' '}
 											</span>
@@ -165,7 +173,7 @@ export default defineComponent({
 									</span>
 								)}
 							</div>
-							<div class={styles.postContent} v-html={postContent.value}></div>
+							<div class={styles.postContent} v-html={postHTML.value}></div>
 						</div>
 					</div>
 				)}
