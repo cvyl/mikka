@@ -115,7 +115,7 @@ export default defineComponent({
 		watch(() => route.params.slug, loadPost)
 
     useHead({
-      title: await title.value || 'Untitled',
+      title: title.value || 'Untitled',
       link: [{ rel: 'canonical', href: `https://cvyl.me/blog/${route.params.slug}` }],
       meta: [
         { name: 'description', content: description.value || '' },
