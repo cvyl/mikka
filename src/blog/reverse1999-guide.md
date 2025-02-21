@@ -189,14 +189,14 @@ Drawing from in-depth discussions on Reddit and timeline breakdowns by theorists
 
 - **Reconstructed Timeline Recap**:  
 
-1.  **1st Storm (1999 → 1996)**
-2.  **2nd Storm (1996 → 1985) [Original: ~2000]**
-3.  **3rd Storm (1987 → 1976) [Original: ~2003]**
-4.  **4th Storm (~1976 → 1930s) [Original: ~2004]**
-5.  **5th Storm (~1930s → 1912) [Original: ~2006]**
-6.  **6th Storm (~1912 → 1966) [Original: ~2007]**
-7.  **7th Storm (1966 → 1929) [Original: ~2007]**
-8.  **8th Storm (1929 → ~1913) [Original: ~2007]**
+1. **1st Storm (1999 → 1996)**
+2. **2nd Storm (1996 → 1985) [Original: ~2000]**
+3. **3rd Storm (1987 → 1976) [Original: ~2003]**
+4. **4th Storm (~1976 → 1930s) [Original: ~2004]**
+5. **5th Storm (~1930s → 1912) [Original: ~2006]**
+6. **6th Storm (~1912 → 1966) [Original: ~2007]**
+7. **7th Storm (1966 → 1929) [Original: ~2007]**
+8. **8th Storm (1929 → ~1913) [Original: ~2007]**
 
 These insights highlight the non-linear and unpredictable nature of the Storm, reinforcing the idea that even the most detailed reconstructions leave room for mystery and debate.
 
