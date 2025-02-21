@@ -24,25 +24,37 @@
 
 .contentWrapper
   display: flex
-  align-items: flex-start
+  flex-direction: column
+  align-items: center
   width: 100%
   max-width: 1200px
 
+  @media screen and (min-width: 1024px)
+    flex-direction: row
+    align-items: flex-start
+
 /* Table of Contents (TOC) */
 .toc
-  width: 250px
-  margin-right: 2rem
-  position: sticky
-  top: 2rem
-  align-self: flex-start
+  display: none
+  width: 100%
+  max-width: 850px
+  margin-bottom: 2rem
+  position: relative
   background: rgba(255, 255, 255, 0.6)
   backdrop-filter: blur(6px)
   padding: 1rem
   border-radius: 8px
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05)
-  max-height: calc(100vh - 4rem)
   overflow-y: auto
 
+  @media screen and (min-width: 1024px)
+    display: block
+    width: 250px
+    margin-right: 2rem
+    margin-bottom: 0
+    position: sticky
+    top: 2rem
+    max-height: calc(100vh - 4rem)
 
 .toc ul
   list-style: none
@@ -93,7 +105,7 @@
   animation: fade-in 0.5s ease-out
 
   @media screen and (max-width: 768px)
-    padding: 1.5rem
+    padding: 1rem
 
 .postTitle
   font-size: 2rem
@@ -103,6 +115,9 @@
   margin-bottom: 0.5rem
   line-height: 1.3em
   transition: all 0.3s ease-in-out
+
+  @media screen and (max-width: 768px)
+    font-size: 1.5rem
 
   &:hover
     color: #444444
@@ -115,12 +130,19 @@
   color: #666666
   margin-bottom: 1rem
 
+  @media screen and (max-width: 768px)
+    flex-direction: column
+    align-items: center
+    gap: 0.5rem
+
 .postDate
   font-weight: 400
 
 .postTags
   display: flex
   gap: 0.5rem
+  flex-wrap: wrap
+  justify-content: center
 
 .tag
   background: rgba(102, 102, 102, 0.15)
@@ -138,6 +160,9 @@
   line-height: 1.7em
   color: #404040
 
+  @media screen and (max-width: 768px)
+    font-size: 1rem
+
   h1, h2, h3
     font-weight: 600
     margin: 1.5rem 0 1rem
@@ -149,10 +174,16 @@
     border-bottom: 2px solid rgba(102, 102, 102, 0.2)
     padding-bottom: 0.5rem
 
+    @media screen and (max-width: 768px)
+      font-size: 1.5rem
+
   h2
     font-size: 1.5rem
     color: #666666
     padding-left: 0.5rem
+
+    @media screen and (max-width: 768px)
+      font-size: 1.3rem
 
   p
     margin-bottom: 1rem
@@ -162,9 +193,9 @@
     text-decoration: none
     transition: all 0.2s ease-in-out
 
-  a:hover
-    text-decoration: underline
-    color: #444444
+    &:hover
+      text-decoration: underline
+      color: #444444
 
   blockquote
     border-left: 4px solid rgba(102, 102, 102, 0.3)
@@ -204,11 +235,14 @@
 .bannerContainer
   position: relative
   border-radius: 8px
-  width: 100%        // Changed to 100%
-  max-width: 850px   // Added max-width to match postContainer
+  width: 100%
+  max-width: 850px
   height: 300px
   overflow: hidden
-  margin: 0 auto     // Centers the container if needed
+  margin: 0 auto
+
+  @media screen and (max-width: 768px)
+    height: 200px
 
 .banner
   display: block
