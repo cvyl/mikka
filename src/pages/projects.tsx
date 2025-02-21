@@ -18,17 +18,17 @@ export default defineComponent({
   name: 'ProjectsPage',
   setup() {
     useHead({
-      title: 'Projects',
+      title: '项目列表',
       link: [{ rel: 'canonical', href: 'https://cvyl.me/projects' }],
       meta: [
         { property: 'og:url', content: 'https://cvyl.me/projects' },
-        { name: 'description', content: 'Explore Mikka’s projects and creations.' },
-        { property: 'og:title', content: 'Projects' },
-        { property: 'og:description', content: 'Explore Mikka’s projects and creations.' },
-        { property: 'twitter:title', content: 'Projects' },
-        { property: 'twitter:description', content: 'Explore Mikka’s projects and creations.' }
+        { name: 'description', content: 'Mikka的项目列表' },
+        { property: 'og:title', content: '项目列表' },
+        { property: 'og:description', content: 'Mikka的项目列表' },
+        { property: 'twitter:title', content: '项目列表' },
+        { property: 'twitter:description', content: 'Mikka的项目列表' }
       ]
-    })
+    });
 
     const projects = ref<Project[]>([
       {
