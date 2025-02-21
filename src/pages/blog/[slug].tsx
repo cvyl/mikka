@@ -141,7 +141,7 @@ export default defineComponent({
 
 		return () => (
 			<div class={styles.postPage}>
-				<BackButton to='/' class={styles.backButton} />
+				<BackButton to='/blog' class={styles.backButton} />
 				{loading.value ? (
 					<p class={styles.loading}>Loading...</p>
 				) : (
