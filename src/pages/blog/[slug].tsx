@@ -114,30 +114,30 @@ export default defineComponent({
 		onMounted(loadPost)
 		watch(() => route.params.slug, loadPost)
 
-    useHead({
-      title: title.value,
-      link: [{ rel: 'canonical', href: `https://cvyl.me/blog/${route.params.slug}` }],
-      meta: [
-        { name: 'description', content: description.value },
-        { property: 'og:url', content: `https://cvyl.me/blog/${route.params.slug}` },
-        { property: 'og:type', content: 'article' },
-        { property: 'og:title', content: title.value },
-        { property: 'og:site_name', content: "cvyl's Blog" },
-        { property: 'og:description', content: description.value },
-        { property: 'og:locale', content: 'en_US' },
-        { property: 'og:image', content: cover.value },
-        { property: 'article:author', content: 'cvyl' },
-        { property: 'twitter:title', content: title.value },
-        { property: 'twitter:description', content: description.value },
-        { property: 'twitter:card', content: 'summary_large_image' },
-        { property: 'twitter:image', content: cover.value },
-        { property: 'twitter:site', content: 'https://cvyl.me' },
-        ...tags.value.map((tag) => ({
-          property: 'article:tag',
-          content: tag
-        }))
-      ]
-    })
+		useHead({
+			title: title.value,
+			link: [{ rel: 'canonical', href: `https://cvyl.me/blog/${route.params.slug}` }],
+			meta: [
+				{ name: 'description', content: description.value },
+				{ property: 'og:url', content: `https://cvyl.me/blog/${route.params.slug}` },
+				{ property: 'og:type', content: 'article' },
+				{ property: 'og:title', content: title.value },
+				{ property: 'og:site_name', content: "cvyl's Blog" },
+				{ property: 'og:description', content: description.value },
+				{ property: 'og:locale', content: 'en_US' },
+				{ property: 'og:image', content: cover.value },
+				{ property: 'article:author', content: 'cvyl' },
+				{ property: 'twitter:title', content: title.value },
+				{ property: 'twitter:description', content: description.value },
+				{ property: 'twitter:card', content: 'summary_large_image' },
+				{ property: 'twitter:image', content: cover.value },
+				{ property: 'twitter:site', content: 'https://cvyl.me' },
+				...tags.value.map((tag) => ({
+					property: 'article:tag',
+					content: tag
+				}))
+			]
+		})
 
 		return () => (
 			<div class={styles.postPage}>

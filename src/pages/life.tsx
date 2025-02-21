@@ -28,6 +28,8 @@ export default defineComponent({
 			]
 		})
 
+		document.getElementById('tgblogStyle')?.remove()
+
 		return () => (
 			<div class={styles.sharesContainer}>
 				<BackButton to='/' class={styles.back} />
