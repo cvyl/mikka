@@ -134,10 +134,10 @@ export default defineComponent({
         { property: 'twitter:card', content: 'summary' },
         { property: 'twitter:image:src', content: cover.value },
         { property: 'twitter:site', content: 'https://cvyl.me' },
-        ...tags.value.map((tag) => ({
+     /*   ...tags.value.map((tag) => ({
           property: 'article:tag',
           content: tag
-        }))
+        }))*/
       ]
     })
 
