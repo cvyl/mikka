@@ -216,7 +216,7 @@ The narrative of _Reverse: 1999_ is intentionally enigmatic, inviting players to
   Could Vertin, with her unparalleled immunity, one day break away to form her own faction? One that transcends the conflict between the Foundation and Manus Vindictae? Such a shift might even pave the way for further narrative depth.
 
 - **Existential Implications**:
-  With time being folded back on itself, what does it mean to "progress"? The game raises poignant philosophical questions about fate versus free will, leaving players to question whether survival amid perpetual reversal is truly a victory.
+  With time being folded back on itself, what does it mean to "progress"? The game raises poignant philosophical questions about fate versus free will, leaving the fanbase to wonder whether survival whilst perpetual reversal can be considered a victory.
 
 ---
 
