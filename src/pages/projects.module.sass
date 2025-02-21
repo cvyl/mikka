@@ -1,0 +1,98 @@
+.projectsPage
+  position: relative
+  width: 100%
+  min-height: 100vh
+  padding: 4rem 2rem
+  display: flex
+  flex-direction: column
+  align-items: center
+  overflow: auto
+  scrollbar-width: none
+  -ms-overflow-style: none
+  &::-webkit-scrollbar
+    display: none
+  scroll-behavior: smooth
+
+.pageTitle
+  font-size: 2.4rem
+  color: #303133
+  font-weight: 700
+  margin-bottom: 2rem
+
+.backButton
+  position: absolute
+  top: 1.5rem
+  left: 1.5rem
+  z-index: 10
+
+.gridContainer
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+  gap: 1.5rem
+  max-width: 1200px
+  width: 100%
+  padding: 1rem
+
+.projectCard
+  position: relative
+  background: rgba(255, 255, 255, 0.75)
+  border-radius: 12px
+  overflow: hidden
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08)
+  backdrop-filter: blur(8px)
+  transition: transform 0.3s ease, box-shadow 0.3s ease
+  display: flex
+  flex-direction: column
+  cursor: pointer
+
+  &:hover
+    transform: translateY(-4px)
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.12)
+
+.projectImage
+  width: 100%
+  height: 40%
+  object-fit: cover
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06)
+
+.projectContent
+  padding: 1.5rem
+  display: flex
+  flex-direction: column
+  gap: 0.8rem
+
+.projectTitle
+  font-size: 1.3rem
+  font-weight: bold
+  color: #303133
+  transition: color 0.2s ease
+  text-decoration: none
+
+  a
+    text-decoration: none
+    color: inherit
+
+.projectCategory
+  font-size: 0.9rem
+  color: #606266
+  text-transform: uppercase
+  letter-spacing: 0.05em
+
+.projectDescription
+  font-size: 1rem
+  color: #404040
+  line-height: 1.4
+
+.projectTags
+  display: flex
+  flex-wrap: wrap
+  gap: 0.5rem
+  margin-top: 0.5rem
+
+.tag
+  background: rgba(0, 0, 0, 0.06)
+  border-radius: 8px
+  padding: 0.3rem 0.7rem
+  font-size: 0.85rem
+  color: #404040
+  font-weight: 500
