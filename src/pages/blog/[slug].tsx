@@ -114,7 +114,7 @@ export default defineComponent({
 		onMounted(loadPost)
 		watch(() => route.params.slug, loadPost)
 
-    useHead(() => ({
+		useHead({
       title: title.value,
       link: [
         { rel: 'canonical', href: `https://cvyl.me/blog/${route.params.slug}` }
@@ -139,7 +139,7 @@ export default defineComponent({
           content: tag
         }))
       ]
-    }))
+    })
 
 		return () => (
 			<div class={styles.postPage}>
