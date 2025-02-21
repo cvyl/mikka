@@ -104,7 +104,7 @@ export default defineComponent({
 					postHTML.value = await marked(contentWithoutFrontmatter)
 					updateTOC()
           useHead({
-            title: title.value,
+            title: await title.value || 'Untitled',
             link: [{ rel: 'canonical', href: `https://cvyl.me/blog/${route.params.slug}` }],
             meta: [
               { name: 'description', content: description.value || '' },
