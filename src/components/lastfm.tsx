@@ -9,7 +9,7 @@ export default defineComponent({
 		const intervalId = ref<number | null>(null) // Store interval ID
 
 		const lastFmApiKey = '0cd5233e03c3bfc97b90a307302a1542'
-		const lastFmUsername = 'Transfeminine'
+		const lastFmUsername = 'cutefag'
 
 		onMounted(() => {
 			fetchCurrentTrack()
