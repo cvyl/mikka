@@ -53,12 +53,37 @@ export default defineComponent({
 				const el = tgBlogRef.value
 				if (!el) return
 
-				el.addEventListener('scroll', navigateToLife, { once: true }) // doesnt work
-				el.addEventListener('click', navigateToLife, { once: true })
+                // Find the TgBlog container inside the ref element
+                const tgBlogContainer = el.querySelector('.tgblogContainer') || el
+
+                // Add both scroll and click events
+                tgBlogContainer.addEventListener('wheel', navigateToLife)
+                tgBlogContainer.addEventListener('click', navigateToLife)
+
+                // Optional: Add hover intent detection
+                let hoverTimer = null
+                tgBlogContainer.addEventListener('mouseenter', () => {
+                  console.log('mouseenter')
+                    // Set a timeout to detect intentional hover
+                    hoverTimer = setTimeout(() => {
+                        // Add a visual indicator that hovering will navigate
+                        tgBlogContainer.style.cursor = 'pointer'
+                    }, 500) // Half second hover intent
+                })
+
+                tgBlogContainer.addEventListener('mouseleave', () => {
+                    // Clear the hover timer if mouse leaves before timeout
+                    console.log('mouseleave')
+                    if (hoverTimer) {
+                        clearTimeout(hoverTimer)
+                        hoverTimer = null
+                    }
+                })
 			}
 
 			// Wait for DOM to render the TgBlog wrapper
-			setTimeout(attachListeners, 500)
+			// Use a slightly longer timeout to ensure the component is fully mounted
+			setTimeout(attachListeners, 1000)
 		})
 
 		function hoverHandler(e) {
