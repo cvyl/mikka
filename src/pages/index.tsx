@@ -1,7 +1,7 @@
 import { defineComponent, ref, onMounted } from 'vue'
 import { useHead } from '@vueuse/head'
+import { useRouter, RouterLink } from 'vue-router'
 import styles from './index.module.sass'
-import { RouterLink } from 'vue-router'
 import SocialNetworks from '~/components/SocialNetworks'
 import LastFm from '~/components/lastfm'
 import 'tg-blog/dist/style.css'
@@ -24,15 +24,15 @@ export default defineComponent({
 
 		const highlightRef = ref()
 		const lifeFeedRef = ref()
+		const tgBlogRef = ref()
 		const TgBlog = ref(null)
 		let timeOutId
+		const router = useRouter()
 
 		onMounted(async () => {
-			// Dynamically import TgBlog
 			const { TgBlog: TgBlogComponent } = await import('tg-blog')
 			TgBlog.value = TgBlogComponent
 
-			// Fade in the feed container
 			if (lifeFeedRef.value) {
 				setTimeout(() => {
 					lifeFeedRef.value.style.opacity = '1'
@@ -40,12 +40,25 @@ export default defineComponent({
 				}, 300)
 			}
 
-			// Add style to hide search
 			const style = document.createElement('style')
-			//add id to style
 			style.id = 'tgblogStyle'
 			style.innerHTML = `.tgblogContainer .search { display: none !important; }`
 			document.head.appendChild(style)
+
+			const navigateToLife = () => {
+				router.push('/life')
+			}
+
+			const attachListeners = () => {
+				const el = tgBlogRef.value
+				if (!el) return
+
+				el.addEventListener('scroll', navigateToLife, { once: true }) // doesnt work
+				el.addEventListener('click', navigateToLife, { once: true })
+			}
+
+			// Wait for DOM to render the TgBlog wrapper
+			setTimeout(attachListeners, 500)
 		})
 
 		function hoverHandler(e) {
@@ -73,16 +86,14 @@ export default defineComponent({
 
 		const links = [
 			['博客', 'Blog', '/blog'],
-      ['项目', 'Projects', '/projects'],
+			['项目', 'Projects', '/projects'],
 			['好朋友们', 'Friends', '/friends'],
-      //['翻译', 'Translations', '/translations'],
 			['生活', 'Life', '/life'],
 			['关于我', 'About', '/about']
 		]
 
 		return () => (
 			<div class={styles.pageContainer}>
-				{/* Left-side container */}
 				<div class={styles.linkContainer} onMouseleave={leave}>
 					<div class={styles.title} onMouseenter={leave}>
 						Mikka's Blog
@@ -114,14 +125,15 @@ export default defineComponent({
 					</div>
 				</div>
 
-				{/* Main feed container */}
 				<div class={styles.lifeFeedContainer} ref={lifeFeedRef}>
 					<h2>Recent Updates</h2>
 					{TgBlog.value && (
-						<TgBlog.value
-							postsUrl='https://raw.githubusercontent.com/cvyl/blog-feed/gh-pages/exports/menhera7/posts.json'
-							class='tgblogContainer'
-						/>
+						<div ref={tgBlogRef}>
+							<TgBlog.value
+								postsUrl='https://raw.githubusercontent.com/cvyl/blog-feed/gh-pages/exports/menhera7/posts.json'
+								class='tgblogContainer'
+							/>
+						</div>
 					)}
 				</div>
 				<LastFm />
