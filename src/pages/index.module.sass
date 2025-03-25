@@ -137,7 +137,11 @@
   border-width: 0px
   border-style: solid
   padding: 20px
-  overflow: hidden
+  overflow: auto
+  scrollbar-width: none // Firefox
+  -ms-overflow-style: none // IE 10+
+  &::-webkit-scrollbar // WebKit (Chrome, Safari)
+    display: none
   mask-image: linear-gradient(to bottom, black 80%, transparent 100%)
   -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%)
   @media (max-width: 1200px)

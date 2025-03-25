@@ -45,44 +45,20 @@ export default defineComponent({
 			style.innerHTML = `.tgblogContainer .search { display: none !important; }`
 			document.head.appendChild(style)
 
-			const navigateToLife = () => {
-				router.push('/life')
-			}
+      const navigateToLife = () => {
+        setTimeout(() => {
+          router.push('/life')
+        }, 50)
+      }
 
 			const attachListeners = () => {
 				const el = tgBlogRef.value
 				if (!el) return
+          const tgBlogContainer = el.querySelector('.tgblogContainer') || el
 
-                // Find the TgBlog container inside the ref element
-                const tgBlogContainer = el.querySelector('.tgblogContainer') || el
-
-                // Add both scroll and click events
-                tgBlogContainer.addEventListener('wheel', navigateToLife)
-                tgBlogContainer.addEventListener('click', navigateToLife)
-
-                // Optional: Add hover intent detection
-                let hoverTimer = null
-                tgBlogContainer.addEventListener('mouseenter', () => {
-                  console.log('mouseenter')
-                    // Set a timeout to detect intentional hover
-                    hoverTimer = setTimeout(() => {
-                        // Add a visual indicator that hovering will navigate
-                        tgBlogContainer.style.cursor = 'pointer'
-                    }, 500) // Half second hover intent
-                })
-
-                tgBlogContainer.addEventListener('mouseleave', () => {
-                    // Clear the hover timer if mouse leaves before timeout
-                    console.log('mouseleave')
-                    if (hoverTimer) {
-                        clearTimeout(hoverTimer)
-                        hoverTimer = null
-                    }
-                })
+          tgBlogContainer.addEventListener('wheel', navigateToLife)
+          tgBlogContainer.addEventListener('click', navigateToLife)
 			}
-
-			// Wait for DOM to render the TgBlog wrapper
-			// Use a slightly longer timeout to ensure the component is fully mounted
 			setTimeout(attachListeners, 1000)
 		})
 
