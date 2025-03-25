@@ -38,7 +38,7 @@ export default defineComponent({
         tags: ['URL Shortener', 'Web Development'],
         category: 'Web Service',
         description: 'A free URL shortener service that allows you to easily shorten long URLs into shorter, more manageable links.',
-        cover: '/gallery/lilya.jpg',
+        cover: '/gallery/projects/shortmoe.png',
         link: 'https://short.moe'
       },
       {
@@ -48,7 +48,7 @@ export default defineComponent({
         tags: ['Subdomain Registration', 'Web Service'],
         category: 'Community',
         description: 'A free sub-domain registration service for the LGBTQ+ community.',
-        cover: '/gallery/lilya.jpg',
+        cover: '/gallery/projects/lgbtsh.png',
         link: 'https://lgbt.sh'
       },
       {
@@ -58,7 +58,7 @@ export default defineComponent({
         tags: ['Resource Compilation', 'LGBTQ+'],
         category: 'Educational',
         description: 'A curated list of LGBTQ+ resources focused on transgender individuals.',
-        cover: '/gallery/lilya.jpg',
+        cover: '/gallery/projects/awesome-transgender.svg',
         link: 'https://github.com/cvyl/awesome-transgender'
       },
       {
