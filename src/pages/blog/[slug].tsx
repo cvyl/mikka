@@ -4,8 +4,19 @@ import { marked } from 'marked'
 import { useHead } from '@vueuse/head'
 import BackButton from '~/components/BackButton'
 import styles from './post.module.sass'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/atom-one-light.css'
 
 const markdownFiles = import.meta.glob('../../blog/*.md', { query: '?raw', import: 'default' })
+
+// Define proper type for frontmatter metadata
+interface PostMetadata {
+  title?: string;
+  date?: string;
+  tags?: string[];
+  cover?: string;
+  description?: string;
+}
 
 export default defineComponent({
 	name: 'DynamicBlogPost',
@@ -21,7 +32,7 @@ export default defineComponent({
 		const loading = ref(true)
 		const toc = ref<Array<{ id: string; text: string; level: number }>>([])
 
-		function slugify(text: string) {
+		function slugify(text: string): string {
 			return text
 				.toLowerCase()
 				.trim()
@@ -29,7 +40,7 @@ export default defineComponent({
 				.replace(/[^\w\-]+/g, '')
 		}
 
-		function updateTOC() {
+		function updateTOC(): void {
 			const tempDiv = document.createElement('div')
 			tempDiv.innerHTML = postHTML.value
 			const headings = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6')
@@ -47,35 +58,36 @@ export default defineComponent({
 			toc.value = newTOC
 		}
 
-		const parseFrontmatter = (content: string) => {
-			const match = content.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/)
-			if (!match) return null
-			const frontmatter = match[1]
-			const data: Record<string, any> = {}
-			frontmatter.split('\n').forEach((line) => {
-				const colonIndex = line.indexOf(':')
-				if (colonIndex === -1) return
-				const key = line.slice(0, colonIndex).trim()
-				let value = line.slice(colonIndex + 1).trim()
-				if (key === 'tags') {
-					data[key] = value
-						.replace(/^\[|\]$/g, '')
-						.split(',')
-						.map((tag) => tag.trim())
-				} else {
-					data[key] = value.replace(/^["'](.*)["']$/, '$1')
+		const parseFrontmatter = (content: string): PostMetadata | null => {
+					const match = content.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/)
+					if (!match) return null
+					const frontmatter = match[1]
+					const data: PostMetadata = {}
+					frontmatter.split('\n').forEach((line) => {
+						const colonIndex = line.indexOf(':')
+						if (colonIndex === -1) return
+						const key = line.slice(0, colonIndex).trim()
+						let value = line.slice(colonIndex + 1).trim()
+						if (key === 'tags') {
+							(data[key as keyof PostMetadata] as string[]) = value
+								.replace(/^\[|\]$/g, '')
+								.split(',')
+								.map((tag) => tag.trim())
+						} else {
+							// Type assertion for specific keys
+							(data[key as keyof PostMetadata] as string) = value.replace(/^["'](.*)["']$/, '$1')
+						}
+					})
+					return data
 				}
-			})
-			return data
-		}
 
-		const loadPost = async () => {
-			const slug = route.params.slug as string | undefined
+		const loadPost = async (): Promise<void> => {
+			const slug = route.params.slug
 			if (!slug) {
 				router.push('/')
 				return
 			}
-			let matchedPath: string | null = null
+			let matchedPath = null
 			for (const path in markdownFiles) {
 				const fileName = path.split('/').pop()?.replace('.md', '')
 				if (fileName === slug) {
@@ -91,13 +103,20 @@ export default defineComponent({
 					const contentWithoutFrontmatter = content.replace(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/, '').trim()
 					if (metadata) {
 						title.value = metadata.title || 'Untitled'
-						date.value = new Date(metadata.date).toLocaleDateString()
+						date.value = metadata.date ? new Date(metadata.date).toLocaleDateString() : ''
 						tags.value = metadata.tags || []
 						cover.value = metadata.cover || ''
 						description.value = metadata.description || ''
 					}
 					postHTML.value = await marked(contentWithoutFrontmatter)
 					updateTOC()
+
+					// Apply highlighting to already rendered code blocks
+					setTimeout(() => {
+						document.querySelectorAll('pre code').forEach((block) => {
+							hljs.highlightElement(block as HTMLElement)
+						})
+					}, 0)
 				} catch (error) {
 					router.push('/')
 				}
