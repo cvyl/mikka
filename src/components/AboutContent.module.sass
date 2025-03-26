@@ -1,9 +1,12 @@
 .aboutContainer
-  position: absolute
+  position: relative
   left: 0
   top: 0
   bottom: 0
   right: 0
+  width: 100%
+  min-height: 100vh
+  overflow-y: auto
 
 .title
   position: sticky
@@ -26,12 +29,10 @@
     display: none
 
 .content
-  position: absolute
-  top: 0
-  bottom: 0
-  left: 0
-  right: 0
-  overflow-y: auto
+  position: relative
+  width: 100%
+  height: auto
+  overflow-y: visible
   display: flex
   flex-direction: column
   align-items: flex-start
@@ -67,7 +68,10 @@
 
 @media (max-width: 600px)
   .card-container
-    padding: 20px
+    padding: 15px
+    margin: 5px
+    width: calc(100% - 10px)
+    box-sizing: border-box
 
 .content-section
   margin-bottom: 25px
@@ -88,6 +92,8 @@
   margin-bottom: 16px
   color: #606266
   white-space: normal
+  word-wrap: break-word
+  overflow-wrap: break-word
   max-width: 100%
 
 @media (max-width: 600px)
@@ -107,6 +113,13 @@
   margin-right: 10px
   margin-bottom: 8px
   color: #606266
+
+@media (max-width: 600px)
+  .icon-container
+    gap: 8px
+
+  .icon-item
+    font-size: 14px
 
 .tech-icons
   gap: 12px

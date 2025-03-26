@@ -15,9 +15,6 @@ export default defineComponent({
   render() {
     return (
       <div class={styles.aboutContainer}>
-        <div class={styles.title}>
-          About Me
-        </div>
         <div class={styles.content}>
           <div class={styles.subContainer}>
             <div class={styles['card-container']}>
