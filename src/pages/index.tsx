@@ -88,6 +88,7 @@ export default defineComponent({
 		const links = [
 			['博客', 'Blog', '/blog'],
 			['项目', 'Projects', '/projects'],
+      //['翻译', 'Translations', '/translations'],
 			['好朋友们', 'Friends', '/friends'],
 			['生活', 'Life', '/life'],
 			['关于我', 'About', '/about']

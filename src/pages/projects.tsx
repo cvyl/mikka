@@ -62,33 +62,33 @@ export default defineComponent({
         link: 'https://github.com/cvyl/awesome-transgender'
       },
       {
-        id: 'cf-email-to-json-worker',
+        id: 'cloudflare-email-to-json-worker',
         title: 'CF Email to JSON Worker',
         date: '2024-12-01',
         tags: ['Cloudflare', 'Serverless', 'Email Parsing'],
         category: 'Web Development',
         description: 'A serverless Cloudflare Worker that parses incoming emails, saves the email body and attachments to an R2 bucket, and provides a JSON feed accessible through a GET request.',
-        cover: '/gallery/lilya.jpg',
+        cover: '/gallery/projects/workers.jpg',
         link: 'https://github.com/cvyl/cf-email-to-json-worker'
       },
       {
         id: 'cloudflare-websocket-livecount',
         title: 'Cloudflare WebSocket LiveCount',
         date: '2025-01-15',
-        tags: ['Real-time', 'WebSockets', 'Vue 3'],
+        tags: ['Real-time', 'WebSockets', 'Cloudflare'],
         category: 'Web Development',
         description: 'A real-time visitor counter built using Vue 3, Vite, Cloudflare Durable Objects, and WebSockets, organized within a Turbo Monorepo.',
-        cover: '/gallery/lilya.jpg',
+        cover: '/gallery/projects/websocket-livecount.png',
         link: 'https://github.com/cvyl/cloudflare-websocket-livecount'
       },
       {
-        id: 'cf-static-archive-worker',
+        id: 'cloudflare-static-archive-worker',
         title: 'CF Static Archive Worker',
         date: '2025-12-15',
         tags: ['Cloudflare', 'Serverless', 'Web Archiving'],
         category: 'Web Development',
         description: 'A serverless website archiving solution built with Cloudflare Workers. This tool crawls and archives static websites, storing all assets (HTML, CSS, JS, images, etc.) in Cloudflare R2 storage.',
-        cover: '/gallery/lilya.jpg',
+        cover: '/gallery/projects/workers.jpg',
         link: 'https://github.com/cvyl/cf-static-archive-worker'
       },
       {
@@ -98,7 +98,7 @@ export default defineComponent({
         tags: ['SVG', 'Country Flags'],
         category: 'Utility',
         description: ' Lightweight loader for country flag SVG files. Designed for compatibility and simplicity, it helps map locale inputs directly to their corresponding country flag SVG.',
-        cover: '/gallery/lilya.jpg',
+        cover: '/gallery/projects/country-flag-svg.png',
         link: 'https://github.com/cvyl/country-flag-svg'
       },
       {
