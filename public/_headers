@@ -1,2 +1,9 @@
 /friends.json
   Content-Type: application/activity+json
+
+/life
+  X-Robots-Tag: noindex
+
+/gallery/*
+  X-Robots-Tag: nosnippet
+  Access-Control-Allow-Origin: *
