@@ -15,22 +15,25 @@ export default defineComponent({
 		})
 
 		useHead({
-			title: 'Mikka\'s Life Feed',
+			title: "Mikka's Life Feed",
 			link: [{ rel: 'canonical', href: 'https://cvyl.me/life' }],
 			meta: [
 				{ property: 'og:url', content: 'https://cvyl.me/life' },
-				{ name: 'description', content: 'Mikka\'s personal rambling about whats currently happening in life' },
-				{ property: 'og:title', content: 'Mikka\'s Life Feed' },
-				{ property: 'og:description', content: 'Mikka\'s personal rambling about whats currently happening in life' },
-				{ property: 'twitter:title', content: 'Mikka\'s Life Feed' },
-				{ property: 'twitter:description', content: 'Mikka\'s personal rambling about whats currently happening in life' },
+				{ name: 'description', content: "Mikka's personal rambling about whats currently happening in life" },
+				{ property: 'og:title', content: "Mikka's Life Feed" },
+				{ property: 'og:description', content: "Mikka's personal rambling about whats currently happening in life" },
+				{ property: 'twitter:title', content: "Mikka's Life Feed" },
+				{
+					property: 'twitter:description',
+					content: "Mikka's personal rambling about whats currently happening in life"
+				},
 				{ name: 'robots', content: 'noindex' }
 			]
 		})
 
-    if (typeof document !== 'undefined') {
-      document.getElementById('tgblogStyle')?.remove()
-    }
+		if (typeof document !== 'undefined') {
+			document.getElementById('tgblogStyle')?.remove()
+		}
 
 		return () => (
 			<div class={styles.sharesContainer}>

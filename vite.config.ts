@@ -126,11 +126,6 @@ export default defineConfig({
           arrowFunctions: true,
           objectShorthand: true,
         },
-        manualChunks: (id) => {
-          if (id.includes('highlight.js')) {
-            return 'highlight';
-          }
-        },
         compact: true,
       },
       preserveEntrySignatures: 'exports-only',

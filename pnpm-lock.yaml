@@ -14,6 +14,9 @@ importers:
       highlight.js:
         specifier: ^11.11.1
         version: 11.11.1
+      katex:
+        specifier: ^0.16.21
+        version: 0.16.21
       marked:
         specifier: ^15.0.7
         version: 15.0.7
@@ -81,6 +84,9 @@ importers:
       postcss:
         specifier: ^8.5.3
         version: 8.5.3
+      prettier:
+        specifier: ^3.5.3
+        version: 3.5.3
       sass:
         specifier: ^1.86.0
         version: 1.86.0
@@ -107,7 +113,7 @@ importers:
         version: 0.21.2(vite@6.2.3(@types/node@22.13.14)(sass@1.86.0)(terser@5.39.0)(yaml@2.7.0))(workbox-build@7.1.1)(workbox-window@7.3.0)
       vite-ssg:
         specifier: ^26.0.0
-        version: 26.0.0(prettier@3.5.1)(unhead@2.0.2)(vite@6.2.3(@types/node@22.13.14)(sass@1.86.0)(terser@5.39.0)(yaml@2.7.0))(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+        version: 26.0.0(prettier@3.5.3)(unhead@2.0.2)(vite@6.2.3(@types/node@22.13.14)(sass@1.86.0)(terser@5.39.0)(yaml@2.7.0))(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       vite-ssg-sitemap:
         specifier: 0.8.1
         version: 0.8.1
@@ -1864,6 +1870,10 @@ packages:
     resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
     engines: {node: '>= 10'}
 
+  commander@8.3.0:
+    resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
+    engines: {node: '>= 12'}
+
   common-tags@1.8.2:
     resolution: {integrity: sha512-gk/Z852D2Wtb//0I+kRFNKKE9dIIVirjoqPoA1wJU+XePVXZfGeBpk45+A1rKO4Q43prqWBNY/MiIeRLbPWUaA==}
     engines: {node: '>=4.0.0'}
@@ -2566,6 +2576,10 @@ packages:
     resolution: {integrity: sha512-p/nXbhSEcu3pZRdkW1OfJhpsVtW1gd4Wa1fnQc9YLiTfAjn0312eMKimbdIQzuZl9aa9xUGaRlP9T/CJE/ditQ==}
     engines: {node: '>=0.10.0'}
 
+  katex@0.16.21:
+    resolution: {integrity: sha512-XvqR7FgOHtWupfMiigNzmh+MgUVmDGU2kXZm899ZkPfcuoPuFxyHmXsgATDpFZDAXCI8tvinaVcDo8PIIJSo4A==}
+    hasBin: true
+
   keycode-js@3.1.0:
     resolution: {integrity: sha512-aAa8PVW7kBDyG14ifGOseaVBjsT1LI953060yRSzzf3G0beKKEuwHVvFGcCI+AofY68NUkPxbLqrkfWPjXySCw==}
 
@@ -2844,8 +2858,8 @@ packages:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
 
-  prettier@3.5.1:
-    resolution: {integrity: sha512-hPpFQvHwL3Qv5AdRvBFMhnKo4tYxp0ReXiPn2bxkiohEX6mBeBwEpBSQTkD458RaaDKQMYSp4hX4UtfUTA5wDw==}
+  prettier@3.5.3:
+    resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -5426,6 +5440,8 @@ snapshots:
 
   commander@7.2.0: {}
 
+  commander@8.3.0: {}
+
   common-tags@1.8.2: {}
 
   concat-map@0.0.1: {}
@@ -6240,6 +6256,10 @@ snapshots:
 
   jsonpointer@5.0.1: {}
 
+  katex@0.16.21:
+    dependencies:
+      commander: 8.3.0
+
   keycode-js@3.1.0: {}
 
   leaflet@1.9.4: {}
@@ -6503,8 +6523,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prettier@3.5.1:
-    optional: true
+  prettier@3.5.3: {}
 
   pretty-bytes@5.6.0: {}
 
@@ -7156,7 +7175,7 @@ snapshots:
 
   vite-ssg-sitemap@0.8.1: {}
 
-  vite-ssg@26.0.0(prettier@3.5.1)(unhead@2.0.2)(vite@6.2.3(@types/node@22.13.14)(sass@1.86.0)(terser@5.39.0)(yaml@2.7.0))(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2)):
+  vite-ssg@26.0.0(prettier@3.5.3)(unhead@2.0.2)(vite@6.2.3(@types/node@22.13.14)(sass@1.86.0)(terser@5.39.0)(yaml@2.7.0))(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2)):
     dependencies:
       '@unhead/dom': 2.0.2(unhead@2.0.2)
       '@unhead/vue': 2.0.2(vue@3.5.13(typescript@5.8.2))
@@ -7168,7 +7187,7 @@ snapshots:
       vite: 6.2.3(@types/node@22.13.14)(sass@1.86.0)(terser@5.39.0)(yaml@2.7.0)
       vue: 3.5.13(typescript@5.8.2)
     optionalDependencies:
-      prettier: 3.5.1
+      prettier: 3.5.3
       vue-router: 4.5.0(vue@3.5.13(typescript@5.8.2))
     transitivePeerDependencies:
       - bufferutil
