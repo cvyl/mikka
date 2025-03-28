@@ -122,10 +122,8 @@ export default defineComponent({
 
 		return () => (
 			<div class={styles.blogIndexPage}>
-				{/* Back button at the top */}
 				<BackButton to='/' class={styles.backButton} />
 
-				{/* Blog index container with year sections */}
 				<div class={styles.blogIndexContainer}>
 					{groupedPosts.value.map((group) => (
 						<div key={group.year} class={styles.blogIndexYearSection}>
@@ -151,7 +149,8 @@ export default defineComponent({
 													))}
 												</div>
 											)}
-											{/*{post.comment && <div class={styles.comment}>Comment: {post.comment}</div>}*/}
+											{/*{post.comment && <div class={styles.comment}>Comment: {post.comment}</div>}
+                      future ideas*/}
 										</div>
 										{post.cover && <img src={post.cover} alt={post.title} class={styles.banner} />}
 									</div>

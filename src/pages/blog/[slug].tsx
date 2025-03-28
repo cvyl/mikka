@@ -134,6 +134,7 @@ export default defineComponent({
 		watch(() => route.params.slug, loadPost)
 
 		// Use watchEffect to update metadata dynamically
+    // Doesn't work unfortunately, will rewrite
 		watchEffect(() => {
 			useHead({
 				title: title.value,

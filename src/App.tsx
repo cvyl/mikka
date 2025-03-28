@@ -12,7 +12,7 @@ export default defineComponent({
 				{ property: 'og:site_name', content: 'Mikka’s Blog' },
 				{ property: 'og:type', content: 'website' },
 				{ name: 'keywords', content: 'cvyl,Mikka' }
-			]
+			] //todo: add more meta tags and expand this
 		})
 
 		const route = useRoute()
