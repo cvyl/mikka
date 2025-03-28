@@ -41,21 +41,23 @@ export default defineComponent({
 		}
 
 		function updateTOC(): void {
-			const tempDiv = document.createElement('div')
-			tempDiv.innerHTML = postHTML.value
-			const headings = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6')
-			const newTOC: Array<{ id: string; text: string; level: number }> = []
-			headings.forEach((heading) => {
-				const text = heading.textContent || ''
-				const level = parseInt(heading.tagName.substring(1), 10)
-				if (!heading.id) {
-					const id = slugify(text)
-					heading.id = id
-				}
-				newTOC.push({ id: heading.id, text, level })
-			})
-			postHTML.value = tempDiv.innerHTML
-			toc.value = newTOC
+      if (typeof document !== 'undefined') {
+        const tempDiv = document.createElement('div')
+        tempDiv.innerHTML = postHTML.value
+        const headings = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6')
+        const newTOC: Array<{ id: string; text: string; level: number }> = []
+        headings.forEach((heading) => {
+          const text = heading.textContent || ''
+          const level = parseInt(heading.tagName.substring(1), 10)
+          if (!heading.id) {
+            const id = slugify(text)
+            heading.id = id
+          }
+          newTOC.push({ id: heading.id, text, level })
+        })
+        postHTML.value = tempDiv.innerHTML
+        toc.value = newTOC
+      }
 		}
 
 		const parseFrontmatter = (content: string): PostMetadata | null => {
@@ -113,9 +115,11 @@ export default defineComponent({
 
 					// Apply highlighting to already rendered code blocks
 					setTimeout(() => {
-						document.querySelectorAll('pre code').forEach((block) => {
-							hljs.highlightElement(block as HTMLElement)
-						})
+            if (typeof document !== 'undefined') {
+              document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block as HTMLElement)
+              })
+            }
 					}, 0)
 				} catch (error) {
 					router.push('/')

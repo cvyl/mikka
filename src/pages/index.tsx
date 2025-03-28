@@ -29,38 +29,40 @@ export default defineComponent({
 		let timeOutId
 		const router = useRouter()
 
-		onMounted(async () => {
-			const { TgBlog: TgBlogComponent } = await import('tg-blog')
-			TgBlog.value = TgBlogComponent
+    if (typeof document !== 'undefined') {
+      onMounted(async () => {
+        const { TgBlog: TgBlogComponent } = await import('tg-blog')
+        TgBlog.value = TgBlogComponent
 
-			if (lifeFeedRef.value) {
-				setTimeout(() => {
-					lifeFeedRef.value.style.opacity = '1'
-					lifeFeedRef.value.style.transform = 'translateY(0)'
-				}, 300)
-			}
+        if (lifeFeedRef.value) {
+          setTimeout(() => {
+            lifeFeedRef.value.style.opacity = '1'
+            lifeFeedRef.value.style.transform = 'translateY(0)'
+          }, 300)
+        }
 
-			const style = document.createElement('style')
-			style.id = 'tgblogStyle'
-			style.innerHTML = `.tgblogContainer .search { display: none !important; }`
-			document.head.appendChild(style)
+        const style = document.createElement('style')
+        style.id = 'tgblogStyle'
+        style.innerHTML = `.tgblogContainer .search { display: none !important; }`
+        document.head.appendChild(style)
 
-      const navigateToLife = () => {
-        setTimeout(() => {
-          router.push('/life')
-        }, 50)
-      }
+        const navigateToLife = () => {
+          setTimeout(() => {
+            router.push('/life')
+          }, 50)
+        }
 
-			const attachListeners = () => {
-				const el = tgBlogRef.value
-				if (!el) return
-          const tgBlogContainer = el.querySelector('.tgblogContainer') || el
+        const attachListeners = () => {
+          const el = tgBlogRef.value
+          if (!el) return
+            const tgBlogContainer = el.querySelector('.tgblogContainer') || el
 
-          tgBlogContainer.addEventListener('wheel', navigateToLife)
-          tgBlogContainer.addEventListener('click', navigateToLife)
-			}
-			setTimeout(attachListeners, 1000)
-		})
+            tgBlogContainer.addEventListener('wheel', navigateToLife)
+            tgBlogContainer.addEventListener('click', navigateToLife)
+        }
+        setTimeout(attachListeners, 1000)
+      })
+    }
 
 		function hoverHandler(e) {
 			if (timeOutId) clearTimeout(timeOutId)

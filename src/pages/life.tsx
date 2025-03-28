@@ -28,7 +28,9 @@ export default defineComponent({
 			]
 		})
 
-		document.getElementById('tgblogStyle')?.remove()
+    if (typeof document !== 'undefined') {
+      document.getElementById('tgblogStyle')?.remove()
+    }
 
 		return () => (
 			<div class={styles.sharesContainer}>
