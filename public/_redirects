@@ -1,4 +1,8 @@
 /pgp /gpg 301
-/atom https://raw.githubusercontent.com/cvyl/blog-feed/gh-pages/exports/menhera7/atom.xml 301
-/rss https://raw.githubusercontent.com/cvyl/blog-feed/gh-pages/exports/menhera7/atom.xml 301
-/actualrss https://raw.githubusercontent.com/cvyl/blog-feed/gh-pages/exports/menhera7/atom.xml 301
+/life/atom https://raw.githubusercontent.com/cvyl/blog-feed/gh-pages/exports/menhera7/atom.xml 301
+/life/rss https://raw.githubusercontent.com/cvyl/blog-feed/gh-pages/exports/menhera7/rss.xml 301
+/blog/rss /rss.xml 301
+/blog/atom /atom.xml 301
+/rss /rss.xml 301
+/atom /atom.xml 301
+/sitemap /sitemap.xml 301
