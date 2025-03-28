@@ -14,6 +14,41 @@ import autoprefixer from 'autoprefixer';
 import SvgLoader from 'vite-svg-loader';
 import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
+import { Feed } from 'feed'
+
+function generateFeeds(posts: {
+  title: string
+  path: string
+  date: string
+  description?: string
+}[], baseUrl: string, outDir: string) {
+  const feed = new Feed({
+    title: 'Mikka的博客',
+    description: 'Mikka的博客文章更新',
+    id: baseUrl,
+    link: baseUrl,
+    language: 'zh',
+    favicon: `${baseUrl}/favicon.ico`,
+    updated: new Date(posts[0]?.date || Date.now()),
+    generator: 'vite-ssg + feed',
+    copyright: `Copyright © ${new Date().getFullYear()} Mikka`
+  })
+
+  for (const post of posts) {
+    feed.addItem({
+      title: post.title,
+      id: `${baseUrl}/blog/${post.path}`,
+      link: `${baseUrl}/blog/${post.path}`,
+      date: new Date(post.date),
+      description: post.description,
+    })
+  }
+
+  fs.mkdirSync(outDir, { recursive: true })
+  fs.writeFileSync(path.join(outDir, 'rss.xml'), feed.rss2())
+  fs.writeFileSync(path.join(outDir, 'atom.xml'), feed.atom1())
+}
+
 
 export default defineConfig({
   resolve: {
@@ -162,6 +197,37 @@ export default defineConfig({
           { userAgent: 'YouBot', disallow: '/' },
         ],
       });
+      const blogDir = path.resolve(__dirname, 'src/blog');
+      const baseUrl = 'https://cvyl.me';
+      const outDir = path.resolve(__dirname, 'dist');
+
+      const posts = fs.readdirSync(blogDir)
+        .filter(file => file.endsWith('.md'))
+        .map(file => {
+          const raw = fs.readFileSync(path.join(blogDir, file), 'utf-8')
+          const match = raw.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/)
+          const frontmatter = match?.[1] || ''
+          const data: Record<string, any> = {}
+
+          frontmatter.split('\n').forEach((line) => {
+            const [key, ...rest] = line.split(':')
+            const value = rest.join(':').trim().replace(/^["']|["']$/g, '')
+            if (key === 'tags') {
+              data[key] = value ? value.replace(/^\[|\]$/g, '').split(',').map(t => t.trim()) : []
+            } else {
+              data[key.trim()] = value
+            }
+          })
+
+          return {
+            title: data.title || 'Untitled',
+            path: file.replace('.md', ''),
+            date: data.date || new Date().toISOString(),
+            description: data.description || '',
+          }
+        }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+      generateFeeds(posts, baseUrl, outDir)
     },
     includedRoutes(paths, routes) {
       // 1. Filter out the placeholder route
