@@ -25,11 +25,11 @@ export default defineComponent({
 			link: [{ rel: 'canonical', href: 'https://cvyl.me/friends' }],
 			meta: [
 				{ property: 'og:url', content: 'https://cvyl.me/friends' },
-				{ name: 'description', content: '这里是凌莞的好朋友们' },
+				{ name: 'description', content: '我的朋友列表' },
 				{ property: 'og:title', content: '友情链接' },
-				{ property: 'og:description', content: '这里是凌莞的好朋友们' },
+				{ property: 'og:description', content: '我的朋友列表' },
 				{ property: 'twitter:title', content: '友情链接' },
-				{ property: 'twitter:description', content: '这里是凌莞的好朋友们' }
+				{ property: 'twitter:description', content: '我的朋友列表' }
 			]
 		})
 
