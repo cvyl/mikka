@@ -52,16 +52,14 @@ export default defineComponent({
 				>
 					<Icon icon={telegramFill} />
 				</a>
-				<a
-					href='https://cvyl.me/blog-feed/exports/menhera7/atom.xml'
-					rel='me'
+				<RouterLink
+					href='/atom'
 					aria-label='RSS Feed'
 					onMouseenter={props.hoverHandler}
 					onFocus={props.hoverHandler}
-					target='_blank'
 				>
 					<Icon icon={rssIcon} />
-				</a>
+				</RouterLink>
 				{/*<a
 					href='https://medium.com/@mikka123'
 					rel='me'
