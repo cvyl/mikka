@@ -84,6 +84,9 @@ importers:
       postcss:
         specifier: ^8.5.3
         version: 8.5.3
+      prettier:
+        specifier: ^3.5.3
+        version: 3.5.3
       sass:
         specifier: ^1.86.0
         version: 1.86.0
@@ -110,7 +113,7 @@ importers:
         version: 0.21.2(vite@6.2.3(@types/node@22.13.14)(sass@1.86.0)(terser@5.39.0)(yaml@2.7.0))(workbox-build@7.1.1)(workbox-window@7.3.0)
       vite-ssg:
         specifier: ^26.0.0
-        version: 26.0.0(prettier@3.5.1)(unhead@2.0.2)(vite@6.2.3(@types/node@22.13.14)(sass@1.86.0)(terser@5.39.0)(yaml@2.7.0))(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+        version: 26.0.0(prettier@3.5.3)(unhead@2.0.2)(vite@6.2.3(@types/node@22.13.14)(sass@1.86.0)(terser@5.39.0)(yaml@2.7.0))(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       vite-ssg-sitemap:
         specifier: 0.8.1
         version: 0.8.1
@@ -2840,8 +2843,8 @@ packages:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
 
-  prettier@3.5.1:
-    resolution: {integrity: sha512-hPpFQvHwL3Qv5AdRvBFMhnKo4tYxp0ReXiPn2bxkiohEX6mBeBwEpBSQTkD458RaaDKQMYSp4hX4UtfUTA5wDw==}
+  prettier@3.5.3:
+    resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -6431,8 +6434,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prettier@3.5.1:
-    optional: true
+  prettier@3.5.3: {}
 
   pretty-bytes@5.6.0: {}
 
@@ -7084,7 +7086,7 @@ snapshots:
 
   vite-ssg-sitemap@0.8.1: {}
 
-  vite-ssg@26.0.0(prettier@3.5.1)(unhead@2.0.2)(vite@6.2.3(@types/node@22.13.14)(sass@1.86.0)(terser@5.39.0)(yaml@2.7.0))(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2)):
+  vite-ssg@26.0.0(prettier@3.5.3)(unhead@2.0.2)(vite@6.2.3(@types/node@22.13.14)(sass@1.86.0)(terser@5.39.0)(yaml@2.7.0))(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2)):
     dependencies:
       '@unhead/dom': 2.0.2(unhead@2.0.2)
       '@unhead/vue': 2.0.2(vue@3.5.13(typescript@5.8.2))
@@ -7096,7 +7098,7 @@ snapshots:
       vite: 6.2.3(@types/node@22.13.14)(sass@1.86.0)(terser@5.39.0)(yaml@2.7.0)
       vue: 3.5.13(typescript@5.8.2)
     optionalDependencies:
-      prettier: 3.5.1
+      prettier: 3.5.3
       vue-router: 4.5.0(vue@3.5.13(typescript@5.8.2))
     transitivePeerDependencies:
       - bufferutil
