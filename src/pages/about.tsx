@@ -46,7 +46,7 @@ export default defineComponent({
 						</div>
 					</div>
 					<BackButton to='/' />
-					<div class={styles.languageSwitchMobile}>
+					{/*<div class={styles.languageSwitchMobile}>
 						<RouterLink
 							to={{ query: { lang: language.value === 'en' ? 'zh' : 'en' } }}
 							aria-label='切换语言 Switch language'
@@ -57,7 +57,7 @@ export default defineComponent({
 					<div class={styles.languageSwitch}>
 						<RouterLink to={{ query: { lang: 'zh' } }}>中文</RouterLink>
 						<RouterLink to={{ query: { lang: 'en' } }}>English</RouterLink>
-					</div>
+					</div> */}
 				</div>
 			)
 		}
