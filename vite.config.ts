@@ -226,7 +226,7 @@ export default defineConfig({
 
       generateFeeds(posts, baseUrl, outDir)
     },
-    includedRoutes(paths, routes) {
+    includedRoutes(paths) {
       // 1. Filter out the placeholder route
       const filteredPaths = paths.filter(route => !route.includes(':'));
 
