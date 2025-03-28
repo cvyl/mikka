@@ -48,12 +48,12 @@ export default defineComponent({
 function download() {
 	const blob = new Blob([pubKey])
 	const url = URL.createObjectURL(blob)
-  if (typeof document !== 'undefined') {
-    const link = document.createElement('a')
-    link.href = url
-    link.download = 'Mikka (cvyl)_0x427C7EAE_public.asc'
-    link.click()
-  }
+	if (typeof document !== 'undefined') {
+		const link = document.createElement('a')
+		link.href = url
+		link.download = 'Mikka (cvyl)_0x427C7EAE_public.asc'
+		link.click()
+	}
 }
 
 const pubKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----

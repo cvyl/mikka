@@ -8,66 +8,66 @@ import 'highlight.js/styles/atom-one-light.css'
 import katex from 'katex'
 
 marked.use({
-  extensions: [
-    {
-      name: 'math',
-      level: 'inline',
-      start(src) {
-        const index = src.match(/\$+/)?.index
-        return index ?? -1
-      },
-      tokenizer(src) {
-        const match = src.match(/^\$([^\$]+?)\$/)
-        if (match) {
-          return {
-            type: 'math',
-            raw: match[0],
-            text: match[1].trim(),
-            math: true
-          }
-        }
-        return undefined
-      },
-      renderer(token) {
-        return katex.renderToString(token.text, { throwOnError: false })
-      }
-    },
-    {
-      name: 'mathBlock',
-      level: 'block',
-      start(src) {
-        const index = src.match(/\$\$/)?.index
-        return index ?? -1
-      },
-      tokenizer(src) {
-        const match = src.match(/^\$\$([\s\S]+?)\$\$/)
-        if (match) {
-          return {
-            type: 'math',
-            raw: match[0],
-            text: match[1].trim(),
-            math: true,
-            block: true
-          }
-        }
-        return undefined
-      },
-      renderer(token) {
-        return `<div class="katex-block">${katex.renderToString(token.text, { displayMode: true, throwOnError: false })}</div>`
-      }
-    }
-  ]
+	extensions: [
+		{
+			name: 'math',
+			level: 'inline',
+			start(src) {
+				const index = src.match(/\$+/)?.index
+				return index ?? -1
+			},
+			tokenizer(src) {
+				const match = src.match(/^\$([^\$]+?)\$/)
+				if (match) {
+					return {
+						type: 'math',
+						raw: match[0],
+						text: match[1].trim(),
+						math: true
+					}
+				}
+				return undefined
+			},
+			renderer(token) {
+				return katex.renderToString(token.text, { throwOnError: false })
+			}
+		},
+		{
+			name: 'mathBlock',
+			level: 'block',
+			start(src) {
+				const index = src.match(/\$\$/)?.index
+				return index ?? -1
+			},
+			tokenizer(src) {
+				const match = src.match(/^\$\$([\s\S]+?)\$\$/)
+				if (match) {
+					return {
+						type: 'math',
+						raw: match[0],
+						text: match[1].trim(),
+						math: true,
+						block: true
+					}
+				}
+				return undefined
+			},
+			renderer(token) {
+				return `<div class="katex-block">${katex.renderToString(token.text, { displayMode: true, throwOnError: false })}</div>`
+			}
+		}
+	]
 })
 
 const markdownFiles = import.meta.glob('../../blog/*.md', { query: '?raw', import: 'default' })
 
 // Define proper type for frontmatter metadata
 interface PostMetadata {
-  title?: string;
-  date?: string;
-  tags?: string[];
-  cover?: string;
-  description?: string;
+	title?: string
+	date?: string
+	tags?: string[]
+	cover?: string
+	description?: string
 }
 
 export default defineComponent({
@@ -93,47 +93,47 @@ export default defineComponent({
 		}
 
 		function updateTOC(): void {
-      if (typeof document !== 'undefined') {
-        const tempDiv = document.createElement('div')
-        tempDiv.innerHTML = postHTML.value
-        const headings = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6')
-        const newTOC: Array<{ id: string; text: string; level: number }> = []
-        headings.forEach((heading) => {
-          const text = heading.textContent || ''
-          const level = parseInt(heading.tagName.substring(1), 10)
-          if (!heading.id) {
-            const id = slugify(text)
-            heading.id = id
-          }
-          newTOC.push({ id: heading.id, text, level })
-        })
-        postHTML.value = tempDiv.innerHTML
-        toc.value = newTOC
-      }
+			if (typeof document !== 'undefined') {
+				const tempDiv = document.createElement('div')
+				tempDiv.innerHTML = postHTML.value
+				const headings = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6')
+				const newTOC: Array<{ id: string; text: string; level: number }> = []
+				headings.forEach((heading) => {
+					const text = heading.textContent || ''
+					const level = parseInt(heading.tagName.substring(1), 10)
+					if (!heading.id) {
+						const id = slugify(text)
+						heading.id = id
+					}
+					newTOC.push({ id: heading.id, text, level })
+				})
+				postHTML.value = tempDiv.innerHTML
+				toc.value = newTOC
+			}
 		}
 
 		const parseFrontmatter = (content: string): PostMetadata | null => {
-					const match = content.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/)
-					if (!match) return null
-					const frontmatter = match[1]
-					const data: PostMetadata = {}
-					frontmatter.split('\n').forEach((line) => {
-						const colonIndex = line.indexOf(':')
-						if (colonIndex === -1) return
-						const key = line.slice(0, colonIndex).trim()
-						let value = line.slice(colonIndex + 1).trim()
-						if (key === 'tags') {
-							(data[key as keyof PostMetadata] as string[]) = value
-								.replace(/^\[|\]$/g, '')
-								.split(',')
-								.map((tag) => tag.trim())
-						} else {
-							// Type assertion for specific keys
-							(data[key as keyof PostMetadata] as string) = value.replace(/^["'](.*)["']$/, '$1')
-						}
-					})
-					return data
+			const match = content.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/)
+			if (!match) return null
+			const frontmatter = match[1]
+			const data: PostMetadata = {}
+			frontmatter.split('\n').forEach((line) => {
+				const colonIndex = line.indexOf(':')
+				if (colonIndex === -1) return
+				const key = line.slice(0, colonIndex).trim()
+				let value = line.slice(colonIndex + 1).trim()
+				if (key === 'tags') {
+					;(data[key as keyof PostMetadata] as string[]) = value
+						.replace(/^\[|\]$/g, '')
+						.split(',')
+						.map((tag) => tag.trim())
+				} else {
+					// Type assertion for specific keys
+					;(data[key as keyof PostMetadata] as string) = value.replace(/^["'](.*)["']$/, '$1')
 				}
+			})
+			return data
+		}
 
 		const loadPost = async (): Promise<void> => {
 			const slug = route.params.slug
@@ -166,27 +166,54 @@ export default defineComponent({
 					updateTOC()
 
 					// Apply highlighting to already rendered code blocks
-          setTimeout(async () => {
-            if (typeof document !== 'undefined') {
-                const hljs = await import('highlight.js/lib/core');
+					setTimeout(async () => {
+						if (typeof document !== 'undefined') {
+							const hljs = await import('highlight.js/lib/core')
 
-                hljs.default.registerLanguage('javascript', await import('highlight.js/lib/languages/javascript').then(m => m.default));
-                hljs.default.registerLanguage('php', await import('highlight.js/lib/languages/php').then(m => m.default));
-                hljs.default.registerLanguage('yaml', await import('highlight.js/lib/languages/yaml').then(m => m.default));
-                hljs.default.registerLanguage('html', await import('highlight.js/lib/languages/xml').then(m => m.default)); // HTML uses XML highlighter
-                hljs.default.registerLanguage('css', await import('highlight.js/lib/languages/css').then(m => m.default));
-                hljs.default.registerLanguage('python', await import('highlight.js/lib/languages/python').then(m => m.default));
-                hljs.default.registerLanguage('bash', await import('highlight.js/lib/languages/bash').then(m => m.default));
-                hljs.default.registerLanguage('json', await import('highlight.js/lib/languages/json').then(m => m.default));
-                hljs.default.registerLanguage('typescript', await import('highlight.js/lib/languages/typescript').then(m => m.default));
+							hljs.default.registerLanguage(
+								'javascript',
+								await import('highlight.js/lib/languages/javascript').then((m) => m.default)
+							)
+							hljs.default.registerLanguage(
+								'php',
+								await import('highlight.js/lib/languages/php').then((m) => m.default)
+							)
+							hljs.default.registerLanguage(
+								'yaml',
+								await import('highlight.js/lib/languages/yaml').then((m) => m.default)
+							)
+							hljs.default.registerLanguage(
+								'html',
+								await import('highlight.js/lib/languages/xml').then((m) => m.default)
+							) // HTML uses XML highlighter
+							hljs.default.registerLanguage(
+								'css',
+								await import('highlight.js/lib/languages/css').then((m) => m.default)
+							)
+							hljs.default.registerLanguage(
+								'python',
+								await import('highlight.js/lib/languages/python').then((m) => m.default)
+							)
+							hljs.default.registerLanguage(
+								'bash',
+								await import('highlight.js/lib/languages/bash').then((m) => m.default)
+							)
+							hljs.default.registerLanguage(
+								'json',
+								await import('highlight.js/lib/languages/json').then((m) => m.default)
+							)
+							hljs.default.registerLanguage(
+								'typescript',
+								await import('highlight.js/lib/languages/typescript').then((m) => m.default)
+							)
 
-              hljs.default.configure({ ignoreUnescapedHTML: true });
+							hljs.default.configure({ ignoreUnescapedHTML: true })
 
-              document.querySelectorAll('pre code').forEach((block) => {
-                hljs.default.highlightElement(block as HTMLElement);
-              });
-            }
-          }, 0);
+							document.querySelectorAll('pre code').forEach((block) => {
+								hljs.default.highlightElement(block as HTMLElement)
+							})
+						}
+					}, 0)
 				} catch (error) {
 					router.push('/')
 				}
@@ -200,7 +227,7 @@ export default defineComponent({
 		watch(() => route.params.slug, loadPost)
 
 		// Use watchEffect to update metadata dynamically
-    // Doesn't work unfortunately, will rewrite
+		// Doesn't work unfortunately, will rewrite
 		watchEffect(() => {
 			useHead({
 				title: title.value,

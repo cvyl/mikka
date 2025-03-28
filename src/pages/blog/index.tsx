@@ -17,7 +17,7 @@ interface BlogPost {
 export default defineComponent({
 	name: 'BlogIndexOverview',
 	setup() {
-    useHead({
+		useHead({
 			title: '博客列表',
 			link: [{ rel: 'canonical', href: 'https://cvyl.me/blog' }],
 			meta: [
