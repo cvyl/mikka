@@ -1,5 +1,4 @@
 import Icon from '~/components/Icon'
-import { defineComponent } from 'vue'
 import web3Icon from '@iconify-icons/logos/ethereum'
 import starIcon from '@iconify-icons/mdi/star'
 import psychologyIcon from '@iconify-icons/mdi/brain'

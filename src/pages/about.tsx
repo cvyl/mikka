@@ -1,7 +1,4 @@
 import styles from './about.module.sass'
-import { RouterLink } from 'vue-router'
-import languageIcon from '@iconify-icons/cil/language.js'
-import Icon from '~/components/Icon'
 import BackButton from '~/components/BackButton'
 import AboutContentZh from '~/components/AboutContentZh'
 import AboutContentEn from '~/components/AboutContentEn'

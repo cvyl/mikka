@@ -92,7 +92,7 @@ export default defineComponent({
 				>
 					<Icon icon={crowdinIcon} />
 				</a>
-				<a
+				{/*<a
 					href='https://raw.githubusercontent.com/cvyl/cvyl/refs/heads/main/cv-28-10-2024.pdf'
 					rel='me'
 					aria-label='Resume/CV'
@@ -101,7 +101,7 @@ export default defineComponent({
 					target='_blank'
 				>
 					<Icon icon={cvIcon} />
-				</a>
+				</a>*/}
 				<RouterLink
 					to='/gpg'
 					aria-label='GPG Public Key'

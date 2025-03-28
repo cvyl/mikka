@@ -1,4 +1,4 @@
-import { defineComponent, ref, onMounted, watch, watchEffect } from 'vue'
+import { ref, onMounted, watch, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { marked } from 'marked'
 import { useHead } from '@vueuse/head'

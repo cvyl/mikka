@@ -1,4 +1,4 @@
-import { defineComponent, ref, onMounted } from 'vue'
+import {from 'vue'
 import styles from './FriendLinkBox.module.sass'
 
 export default defineComponent({

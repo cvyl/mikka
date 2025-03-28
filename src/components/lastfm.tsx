@@ -1,4 +1,4 @@
-import { defineComponent, ref, onMounted, onUnmounted, Fragment } from 'vue'
+import { ref, onMounted, onUnmounted, Fragment } from 'vue'
 import styles from './lastfm.module.sass'
 
 export default defineComponent({

@@ -1,4 +1,4 @@
-import { defineComponent, ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import BackButton from '~/components/BackButton'
 import styles from './index.module.sass'

@@ -1,4 +1,4 @@
-import { defineComponent, ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import styles from './life.module.sass'
 import BackButton from '~/components/BackButton'
 import 'tg-blog/dist/style.css'

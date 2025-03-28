@@ -1,4 +1,4 @@
-import { defineComponent, ref, onMounted, Fragment } from 'vue'
+import { ref, onMounted, Fragment } from 'vue'
 import BackButton from '~/components/BackButton'
 import styles from './friends.module.sass'
 

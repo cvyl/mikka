@@ -1,4 +1,4 @@
-import { defineComponent, ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useHead } from '@vueuse/head'
 import { useRouter, RouterLink } from 'vue-router'
 import styles from './index.module.sass'

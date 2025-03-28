@@ -8,12 +8,8 @@ import Inspect from 'vite-plugin-inspect';
 import VueJsx from '@vitejs/plugin-vue-jsx';
 import Content from '@originjs/vite-plugin-content';
 import * as fs from 'fs';
-import remarkGfm from 'remark-gfm';
-import rehypePrism from '@mapbox/rehype-prism';
 import autoprefixer from 'autoprefixer';
 import SvgLoader from 'vite-svg-loader';
-import rehypeKatex from 'rehype-katex';
-import remarkMath from 'remark-math';
 import { Feed } from 'feed'
 
 function generateFeeds(posts: {
@@ -59,6 +55,7 @@ export default defineConfig({
   },
   css: {
     postcss: {
+      //@ts-ignore
       plugins: [autoprefixer()],
     },
   },
