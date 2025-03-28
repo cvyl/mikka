@@ -4,8 +4,60 @@ import { marked } from 'marked'
 import { useHead } from '@vueuse/head'
 import BackButton from '~/components/BackButton'
 import styles from './post.module.sass'
-import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-light.css'
+import katex from 'katex'
+
+marked.use({
+  extensions: [
+    {
+      name: 'math',
+      level: 'inline',
+      start(src) {
+        const index = src.match(/\$+/)?.index
+        return index ?? -1
+      },
+      tokenizer(src) {
+        const match = src.match(/^\$([^\$]+?)\$/)
+        if (match) {
+          return {
+            type: 'math',
+            raw: match[0],
+            text: match[1].trim(),
+            math: true
+          }
+        }
+        return undefined
+      },
+      renderer(token) {
+        return katex.renderToString(token.text, { throwOnError: false })
+      }
+    },
+    {
+      name: 'mathBlock',
+      level: 'block',
+      start(src) {
+        const index = src.match(/\$\$/)?.index
+        return index ?? -1
+      },
+      tokenizer(src) {
+        const match = src.match(/^\$\$([\s\S]+?)\$\$/)
+        if (match) {
+          return {
+            type: 'math',
+            raw: match[0],
+            text: match[1].trim(),
+            math: true,
+            block: true
+          }
+        }
+        return undefined
+      },
+      renderer(token) {
+        return `<div class="katex-block">${katex.renderToString(token.text, { displayMode: true, throwOnError: false })}</div>`
+      }
+    }
+  ]
+})
 
 const markdownFiles = import.meta.glob('../../blog/*.md', { query: '?raw', import: 'default' })
 
