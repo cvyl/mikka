@@ -114,13 +114,27 @@ export default defineComponent({
 					updateTOC()
 
 					// Apply highlighting to already rendered code blocks
-					setTimeout(() => {
+          setTimeout(async () => {
             if (typeof document !== 'undefined') {
+                const hljs = await import('highlight.js/lib/core');
+
+                hljs.default.registerLanguage('javascript', await import('highlight.js/lib/languages/javascript').then(m => m.default));
+                hljs.default.registerLanguage('php', await import('highlight.js/lib/languages/php').then(m => m.default));
+                hljs.default.registerLanguage('yaml', await import('highlight.js/lib/languages/yaml').then(m => m.default));
+                hljs.default.registerLanguage('html', await import('highlight.js/lib/languages/xml').then(m => m.default)); // HTML uses XML highlighter
+                hljs.default.registerLanguage('css', await import('highlight.js/lib/languages/css').then(m => m.default));
+                hljs.default.registerLanguage('python', await import('highlight.js/lib/languages/python').then(m => m.default));
+                hljs.default.registerLanguage('bash', await import('highlight.js/lib/languages/bash').then(m => m.default));
+                hljs.default.registerLanguage('json', await import('highlight.js/lib/languages/json').then(m => m.default));
+                hljs.default.registerLanguage('typescript', await import('highlight.js/lib/languages/typescript').then(m => m.default));
+
+              hljs.default.configure({ ignoreUnescapedHTML: true });
+
               document.querySelectorAll('pre code').forEach((block) => {
-                hljs.highlightElement(block as HTMLElement)
-              })
+                hljs.default.highlightElement(block as HTMLElement);
+              });
             }
-					}, 0)
+          }, 0);
 				} catch (error) {
 					router.push('/')
 				}
