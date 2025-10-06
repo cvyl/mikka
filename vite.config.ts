@@ -86,8 +86,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       manifestFilename: 'manifest.json',
       manifest: {
-        name: '凌莞喵～',
-        short_name: '凌莞喵～',
+        name: 'Mikka的博客',
+        short_name: 'Mikka的博客',
         theme_color: '#EDF8F6',
         background_color: '#EDF8F6',
         orientation: 'portrait-primary',
@@ -137,7 +137,7 @@ export default defineConfig({
     formatting: 'minify',
     onFinished() {
       generateSitemap({
-        hostname: 'https://cvyl.me',
+        hostname: 'https://mikka.im',
         generateRobotsTxt: true,
         robots: [
           { userAgent: '*', allow: '/' },
@@ -195,7 +195,7 @@ export default defineConfig({
         ],
       });
       const blogDir = path.resolve(__dirname, 'src/blog');
-      const baseUrl = 'https://cvyl.me';
+      const baseUrl = 'https://mikka.im';
       const outDir = path.resolve(__dirname, 'dist');
 
       const posts = fs.readdirSync(blogDir)

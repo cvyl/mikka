@@ -18,9 +18,9 @@ export default defineComponent({
 	setup() {
 		useHead({
 			title: '项目列表',
-			link: [{ rel: 'canonical', href: 'https://cvyl.me/projects' }],
+			link: [{ rel: 'canonical', href: 'https://mikka.im/projects' }],
 			meta: [
-				{ property: 'og:url', content: 'https://cvyl.me/projects' },
+				{ property: 'og:url', content: 'https://mikka.im/projects' },
 				{ name: 'description', content: 'Mikka的项目列表' },
 				{ property: 'og:title', content: '项目列表' },
 				{ property: 'og:description', content: 'Mikka的项目列表' },
@@ -145,7 +145,7 @@ export default defineComponent({
 				category: 'Web Development',
 				description: 'Website terminal project I did for fun. It has a few commands that you can run.',
 				cover: '/gallery/lilya.jpg',
-				link: 'https://cvyl.me/terminal'
+				link: 'https://mikka.im/terminal'
 			}
 			//to add, 20k20k.org bot, links.lgbt website
 		])

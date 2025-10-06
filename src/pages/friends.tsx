@@ -1,3 +1,4 @@
+// oxlint-disable-next-line no-unused-vars
 import { ref, onMounted, Fragment } from 'vue'
 import BackButton from '~/components/BackButton'
 import styles from './friends.module.sass'
@@ -22,9 +23,9 @@ export default defineComponent({
 
 		useHead({
 			title: '友情链接',
-			link: [{ rel: 'canonical', href: 'https://cvyl.me/friends' }],
+			link: [{ rel: 'canonical', href: 'https://mikka.im/friends' }],
 			meta: [
-				{ property: 'og:url', content: 'https://cvyl.me/friends' },
+				{ property: 'og:url', content: 'https://mikka.im/friends' },
 				{ name: 'description', content: '我的朋友列表' },
 				{ property: 'og:title', content: '友情链接' },
 				{ property: 'og:description', content: '我的朋友列表' },

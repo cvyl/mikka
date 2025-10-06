@@ -16,9 +16,9 @@ export default defineComponent({
 
 		useHead({
 			title: "Mikka's Life Feed",
-			link: [{ rel: 'canonical', href: 'https://cvyl.me/life' }],
+			link: [{ rel: 'canonical', href: 'https://mikka.im/life' }],
 			meta: [
-				{ property: 'og:url', content: 'https://cvyl.me/life' },
+				{ property: 'og:url', content: 'https://mikka.im/life' },
 				{ name: 'description', content: "Mikka's personal rambling about whats currently happening in life" },
 				{ property: 'og:title', content: "Mikka's Life Feed" },
 				{ property: 'og:description', content: "Mikka's personal rambling about whats currently happening in life" },

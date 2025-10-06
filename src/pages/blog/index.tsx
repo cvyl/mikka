@@ -19,9 +19,9 @@ export default defineComponent({
 	setup() {
 		useHead({
 			title: '博客列表',
-			link: [{ rel: 'canonical', href: 'https://cvyl.me/blog' }],
+			link: [{ rel: 'canonical', href: 'https://mikka.im/blog' }],
 			meta: [
-				{ property: 'og:url', content: 'https://cvyl.me/blog' },
+				{ property: 'og:url', content: 'https://mikka.im/blog' },
 				{ name: 'description', content: 'Mikka的博客文章列表' },
 				{ property: 'og:title', content: '博客列表' },
 				{ property: 'og:description', content: 'Mikka的博客文章列表' },

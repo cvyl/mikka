@@ -1,4 +1,4 @@
-import { ref, onMounted, watch, watchEffect } from 'vue'
+import { ref, onMounted, watch, onServerPrefetch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { marked } from 'marked'
 import { useHead } from '@vueuse/head'
@@ -17,7 +17,7 @@ marked.use({
 				return index ?? -1
 			},
 			tokenizer(src) {
-				const match = src.match(/^\$([^\$]+?)\$/)
+				const match = src.match(/^\$([^$]+?)\$/)
 				if (match) {
 					return {
 						type: 'math',
@@ -61,7 +61,6 @@ marked.use({
 
 const markdownFiles = import.meta.glob('../../blog/*.md', { query: '?raw', import: 'default' })
 
-// Define proper type for frontmatter metadata
 interface PostMetadata {
 	title?: string
 	date?: string
@@ -89,7 +88,7 @@ export default defineComponent({
 				.toLowerCase()
 				.trim()
 				.replace(/\s+/g, '-')
-				.replace(/[^\w\-]+/g, '')
+				.replace(/[^\w-]+/g, '')
 		}
 
 		function updateTOC(): void {
@@ -128,7 +127,6 @@ export default defineComponent({
 						.split(',')
 						.map((tag) => tag.trim())
 				} else {
-					// Type assertion for specific keys
 					;(data[key as keyof PostMetadata] as string) = value.replace(/^["'](.*)["']$/, '$1')
 				}
 			})
@@ -185,7 +183,7 @@ export default defineComponent({
 							hljs.default.registerLanguage(
 								'html',
 								await import('highlight.js/lib/languages/xml').then((m) => m.default)
-							) // HTML uses XML highlighter
+							)
 							hljs.default.registerLanguage(
 								'css',
 								await import('highlight.js/lib/languages/css').then((m) => m.default)
@@ -223,36 +221,40 @@ export default defineComponent({
 			loading.value = false
 		}
 
-		onMounted(loadPost)
+		// Use onServerPrefetch for SSG/SSR to load metadata before rendering
+		onServerPrefetch(async () => {
+			await loadPost()
+		})
+
+		onMounted(() => {
+			// Only load if not already loaded during SSR/SSG
+			if (!postHTML.value) {
+				loadPost()
+			}
+		})
+
 		watch(() => route.params.slug, loadPost)
 
-		// Use watchEffect to update metadata dynamically
-		// Doesn't work unfortunately, will rewrite
-		watchEffect(() => {
-			useHead({
-				title: title.value,
-				link: [{ rel: 'canonical', href: `https://cvyl.me/blog/${route.params.slug}` }],
-				meta: [
-					{ name: 'description', content: description.value },
-					{ property: 'og:url', content: `https://cvyl.me/blog/${route.params.slug}` },
-					{ property: 'og:type', content: 'article' },
-					{ property: 'og:title', content: title.value },
-					{ property: 'og:site_name', content: "cvyl's Blog" },
-					{ property: 'og:description', content: description.value },
-					{ property: 'og:locale', content: 'en_US' },
-					{ property: 'og:image', content: cover.value },
-					{ property: 'article:author', content: 'cvyl' },
-					{ property: 'twitter:title', content: title.value },
-					{ property: 'twitter:description', content: description.value },
-					{ property: 'twitter:card', content: 'summary_large_image' },
-					{ property: 'twitter:image', content: cover.value },
-					{ property: 'twitter:site', content: 'https://cvyl.me' },
-					...tags.value.map((tag) => ({
-						property: 'article:tag',
-						content: tag
-					}))
-				]
-			})
+		// Set up head with reactive refs
+		useHead({
+			title: () => title.value || 'Mikka\'s Blog',
+			link: [{ rel: 'canonical', href: `https://mikka.im/blog/${route.params.slug}` }],
+			meta: [
+				{ name: 'description', content: () => description.value },
+				{ property: 'og:url', content: `https://mikka.im/blog/${route.params.slug}` },
+				{ property: 'og:type', content: 'article' },
+				{ property: 'og:title', content: () => title.value },
+				{ property: 'og:site_name', content: "Mikka's Blog" },
+				{ property: 'og:description', content: () => description.value },
+				{ property: 'og:locale', content: 'en_US' },
+				{ property: 'og:image', content: () => cover.value },
+				{ property: 'article:author', content: 'Mikka' },
+				{ property: 'twitter:title', content: () => title.value },
+				{ property: 'twitter:description', content: () => description.value },
+				{ property: 'twitter:card', content: 'summary_large_image' },
+				{ property: 'twitter:image', content: () => cover.value },
+				{ property: 'twitter:site', content: 'https://mikka.im' },
+			]
 		})
 
 		return () => (

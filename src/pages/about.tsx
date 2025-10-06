@@ -1,15 +1,14 @@
 import styles from './about.module.sass'
 import BackButton from '~/components/BackButton'
-import AboutContentZh from '~/components/AboutContentZh'
 import AboutContentEn from '~/components/AboutContentEn'
 
 export default defineComponent({
 	setup() {
 		useHead({
 			title: '关于我',
-			link: [{ rel: 'canonical', href: 'https://cvyl.me/about' }],
+			link: [{ rel: 'canonical', href: 'https://mikka.im/about' }],
 			meta: [
-				{ property: 'og:url', content: 'https://cvyl.me/about' },
+				{ property: 'og:url', content: 'https://mikka.im/about' },
 				{ name: 'description', content: '这里可能有一些你想了解的信息' },
 				{ property: 'og:title', content: '关于我' },
 				{ property: 'og:description', content: '这里可能有一些你想了解的信息' },
@@ -18,30 +17,15 @@ export default defineComponent({
 			]
 		})
 
-		const route = useRoute()
-		const preferredLanguage = ref('en')
-		const browserLanguages = usePreferredLanguages()
-		for (const language of browserLanguages.value) {
-			if (language === 'en' || /en-\w+/.test(language)) {
-				preferredLanguage.value = 'en'
-				break
-			}
-			if (language === 'zh' || /zh-\w+/.test(language)) {
-				preferredLanguage.value = 'zh'
-				break
-			}
-		}
-		const language = computed(() => (route.query.lang as string) || preferredLanguage.value)
-
-		return () => {
-			return (
-				<div class={styles.aboutContainer}>
-					<div class={styles.content}>
-						<div class={styles.title}>{language.value === 'en' ? 'About' : '关于我'}</div>
-						<div class={styles.subContainer}>
-							<div>{language.value === 'en' ? <AboutContentEn /> : <AboutContentZh />}</div>
-						</div>
-					</div>
+    return () => {
+      return (
+        <div class={styles.aboutContainer}>
+          <div class={styles.content}>
+            <div class={styles.title}>About</div>
+            <div class={styles.subContainer}>
+              <div><AboutContentEn /></div>
+            </div>
+          </div>
 					<BackButton to='/' />
 					{/*<div class={styles.languageSwitchMobile}>
 						<RouterLink

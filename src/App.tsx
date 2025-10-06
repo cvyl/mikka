@@ -5,11 +5,11 @@ import { Transition } from 'vue'
 export default defineComponent({
 	setup() {
 		useHead({
-			title: 'Mikka’s Blog',
+			title: 'Mikka\'s Blog',
 			link: [{ rel: 'icon', href: '/favicon.ico', type: 'image/ico' }],
 			meta: [
 				{ name: 'author', content: 'Mikka' },
-				{ property: 'og:site_name', content: 'Mikka’s Blog' },
+				{ property: 'og:site_name', content: 'Mikka\'s Blog' },
 				{ property: 'og:type', content: 'website' },
 				{ name: 'keywords', content: 'cvyl,Mikka' }
 			] //todo: add more meta tags and expand this
