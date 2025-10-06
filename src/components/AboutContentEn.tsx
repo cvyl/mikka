@@ -20,42 +20,43 @@ export default defineComponent({
 							<section class={styles['content-section']}>
 								<h2 class={styles['section-title']}>Who am I?</h2>
 								<p class={styles['section-text']}>
-									Hey there! I'm Mikka, I have a lifelong passion for technology, starting my journey into the
-									world of computers at the age of nine. Over the years, I've become a programming enthusiast,
-									constantly exploring the ever-evolving landscape of web development and software engineering.
+									Hey there! I'm Mikka, I have a lifelong passion for technology, starting my journey into the world of
+									computers at the age of nine. Over the years, I've become a programming enthusiast, constantly
+									exploring the ever-evolving landscape of web development and software engineering.
 								</p>
 							</section>
 
-              <section class={styles['content-section']}>
-                <h2 class={styles['section-title']}>Interests and Hobbies</h2>
-                <p class={styles['section-text']}>
-                  Aside from programming, I'm interested in astronomy, psychology, and philosophy. I enjoy understanding
-                  humans and exploring the profound questions these fields raise. I'm drawn to analog technology
-                  and find myself frequently building various projects from websites to apps and bots.
-                </p>
-                <p class={styles['section-text']}>
-                  I have a special appreciation for niche music (especially noise-heavy genres) and surreal/psychological
-                  media. You'll often find me exploring internet subcultures, altchans, and unique art that sparks my curiosity.
-                  When not online, I enjoy reading, doodling, and having deep conversations about the meaning of life.
-                </p>
-                <div class={styles['icon-container']}>
-                  <div class={styles['icon-item']}>
-                    <Icon icon={starIcon} /> Astronomy
-                  </div>
-                  <div class={styles['icon-item']}>
-                    <Icon icon={psychologyIcon} /> Psychology
-                  </div>
-                  <div class={styles['icon-item']}>
-                    <Icon icon={philosophyIcon} /> Philosophy
-                  </div>
-                  <div class={styles['icon-item']}>
-                    <Icon icon={musicIcon} /> Niche Music
-                  </div>
-                  <div class={styles['icon-item']}>
-                    <Icon icon={web3Icon} /> Technology
-                  </div>
-                </div>
-              </section>
+							<section class={styles['content-section']}>
+								<h2 class={styles['section-title']}>Interests and Hobbies</h2>
+								<p class={styles['section-text']}>
+									Aside from programming, I'm interested in astronomy, psychology, and philosophy. I enjoy understanding
+									humans and exploring the profound questions these fields raise. I'm drawn to analog technology and
+									find myself frequently building various projects from websites to apps and bots.
+								</p>
+								<p class={styles['section-text']}>
+									I have a special appreciation for niche music (especially noise-heavy genres) and
+									surreal/psychological media. You'll often find me exploring internet subcultures, altchans, and unique
+									art that sparks my curiosity. When not online, I enjoy reading, doodling, and having deep
+									conversations about the meaning of life.
+								</p>
+								<div class={styles['icon-container']}>
+									<div class={styles['icon-item']}>
+										<Icon icon={starIcon} /> Astronomy
+									</div>
+									<div class={styles['icon-item']}>
+										<Icon icon={psychologyIcon} /> Psychology
+									</div>
+									<div class={styles['icon-item']}>
+										<Icon icon={philosophyIcon} /> Philosophy
+									</div>
+									<div class={styles['icon-item']}>
+										<Icon icon={musicIcon} /> Niche Music
+									</div>
+									<div class={styles['icon-item']}>
+										<Icon icon={web3Icon} /> Technology
+									</div>
+								</div>
+							</section>
 
 							<section class={styles['content-section']}>
 								<h2 class={styles['section-title']}>Language Enthusiast</h2>

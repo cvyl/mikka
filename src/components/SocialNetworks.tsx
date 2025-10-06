@@ -52,12 +52,7 @@ export default defineComponent({
 				>
 					<Icon icon={telegramFill} />
 				</a>
-				<RouterLink
-					href='/atom'
-					aria-label='RSS Feed'
-					onMouseenter={props.hoverHandler}
-					onFocus={props.hoverHandler}
-				>
+				<RouterLink href='/atom' aria-label='RSS Feed' onMouseenter={props.hoverHandler} onFocus={props.hoverHandler}>
 					<Icon icon={rssIcon} />
 				</RouterLink>
 				{/*<a

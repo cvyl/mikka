@@ -17,15 +17,17 @@ export default defineComponent({
 			]
 		})
 
-    return () => {
-      return (
-        <div class={styles.aboutContainer}>
-          <div class={styles.content}>
-            <div class={styles.title}>About</div>
-            <div class={styles.subContainer}>
-              <div><AboutContentEn /></div>
-            </div>
-          </div>
+		return () => {
+			return (
+				<div class={styles.aboutContainer}>
+					<div class={styles.content}>
+						<div class={styles.title}>About</div>
+						<div class={styles.subContainer}>
+							<div>
+								<AboutContentEn />
+							</div>
+						</div>
+					</div>
 					<BackButton to='/' />
 					{/*<div class={styles.languageSwitchMobile}>
 						<RouterLink

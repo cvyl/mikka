@@ -7,10 +7,10 @@ export default defineComponent({
 		return () => (
 			<>
 				<div class={styles.container}>
-          <BackButton to='/' class={styles.backButton} />
-          <h1>Work in progress, please check back later.</h1>
-        </div>
-      </>
-    )
-  }
+					<BackButton to='/' class={styles.backButton} />
+					<h1>Work in progress, please check back later.</h1>
+				</div>
+			</>
+		)
+	}
 })

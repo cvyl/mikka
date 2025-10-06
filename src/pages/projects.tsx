@@ -147,16 +147,16 @@ export default defineComponent({
 				cover: '/gallery/lilya.jpg',
 				link: 'https://mikka.im/terminal'
 			},
-      {
-        id: 'exiledanarchy',
-        title: 'Exiled Anarchy',
-        date: '2025-09-11',
-        tags: ['Community', 'Minecraft', 'Web Development'],
-        category: 'Web Development',
-        description: 'A Minecraft anarchy server.',
-        cover: '/gallery/lilya.jpg',
-        link: 'https://exiledanarchy.net'
-      }
+			{
+				id: 'exiledanarchy',
+				title: 'Exiled Anarchy',
+				date: '2025-09-11',
+				tags: ['Community', 'Minecraft', 'Web Development'],
+				category: 'Web Development',
+				description: 'A Minecraft anarchy server.',
+				cover: '/gallery/lilya.jpg',
+				link: 'https://exiledanarchy.net'
+			}
 			//to add, 20k20k.org bot, links.lgbt website
 		])
 
