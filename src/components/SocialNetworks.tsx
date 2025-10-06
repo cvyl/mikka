@@ -21,7 +21,7 @@ export default defineComponent({
 		return () => (
 			<>
 				<a
-					href='mailto:i@cvyl.me'
+					href='mailto:i@xs.ax'
 					aria-label='Email'
 					onMouseenter={props.hoverHandler}
 					onFocus={props.hoverHandler}
@@ -43,7 +43,7 @@ export default defineComponent({
           <Icon icon={mastodonFill} />
         </a>*/}
 				<a
-					href='https://t.me/malehera'
+					href='https://t.me/menhera7'
 					rel='me'
 					aria-label='Telegram'
 					onMouseenter={props.hoverHandler}
@@ -70,7 +70,7 @@ export default defineComponent({
 				>
 					<Icon icon={mediumFill} />
 				</a>*/}
-				<a
+				{/*<a
 					href='https://help.obsidian.md/Obsidian/Credits#Translators'
 					rel='me'
 					aria-label='Obsidian.md Credits'
@@ -79,7 +79,7 @@ export default defineComponent({
 					target='_blank'
 				>
 					<Icon icon={obsidianIcon} />
-				</a>
+				</a>*/}
 				<a
 					href='https://crowdin.com/profile/kohada'
 					rel='me'
